@@ -646,8 +646,6 @@ GameObject:
   - component: {fileID: 606720277}
   - component: {fileID: 606720276}
   - component: {fileID: 606720275}
-  - component: {fileID: 606720279}
-  - component: {fileID: 606720280}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -738,49 +736,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &606720279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606720274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938fd13881a147a49eca436ed6242f9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuizUI
-  quizManager: {fileID: 935085985}
-  screenNavigation: {fileID: 606720280}
-  questionPanel: {fileID: 190796724}
-  questionText: {fileID: 201881184}
-  optionsContainer: {fileID: 1522969570}
-  optionButtonPrefab: {fileID: 5609948746297674703, guid: ca03e2738ed342047881b7b804f468ae, type: 3}
-  submitButton: {fileID: 201509440}
-  feedbackPanel: {fileID: 1677771835}
-  feedbackText: {fileID: 1365030002}
-  nextButton: {fileID: 1638436132}
---- !u!114 &606720280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606720274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26dc2c5a462d4261bd29e096bdd9158f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.MenuSystem.ScreenNavigation
-  autoSelectOnEnable: 0
-  autoSelectOnNavigate: 1
-  rememberPreviousSelection: 0
-  enableOnPointerEnterSelection: 1
-  enableOnPointerExitDeselection: 1
-  overrideDefaultSelectable:
-    isSet: 0
-    hideValueIfSet: 1
-    value: {fileID: 0}
 --- !u!1 &935085982
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,8 +914,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1336206978}
+  - component: {fileID: 1336206980}
+  - component: {fileID: 1336206979}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: QuizMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -988,6 +945,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1336206979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336206977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938fd13881a147a49eca436ed6242f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuizUI
+  quizManager: {fileID: 935085985}
+  screenNavigation: {fileID: 1336206980}
+  questionPanel: {fileID: 190796724}
+  questionText: {fileID: 201881184}
+  optionsContainer: {fileID: 1522969570}
+  optionButtonPrefab: {fileID: 5609948746297674703, guid: ca03e2738ed342047881b7b804f468ae, type: 3}
+  submitButton: {fileID: 201509440}
+  feedbackPanel: {fileID: 1677771835}
+  feedbackText: {fileID: 1365030002}
+  nextButton: {fileID: 1638436132}
+--- !u!114 &1336206980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336206977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dc2c5a462d4261bd29e096bdd9158f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.MenuSystem.ScreenNavigation
+  autoSelectOnEnable: 0
+  autoSelectOnNavigate: 1
+  rememberPreviousSelection: 0
+  enableOnPointerEnterSelection: 1
+  enableOnPointerExitDeselection: 1
+  overrideDefaultSelectable:
+    isSet: 0
+    hideValueIfSet: 1
+    value: {fileID: 0}
 --- !u!1 &1365030000
 GameObject:
   m_ObjectHideFlags: 0
