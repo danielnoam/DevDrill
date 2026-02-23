@@ -917,7 +917,7 @@ GameObject:
   - component: {fileID: 1336206980}
   - component: {fileID: 1336206979}
   m_Layer: 5
-  m_Name: QuizMenu
+  m_Name: Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1228,7 +1228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1677771836
 RectTransform:
   m_ObjectHideFlags: 0
