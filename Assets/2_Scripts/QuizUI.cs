@@ -13,6 +13,10 @@ public class QuizUI : MonoBehaviour
     [SerializeField, AutoGetSelf] private CanvasGroup canvasGroup;
     
     
+    [Header("Style")]
+    [SerializeField] private TMP_FontAsset monoFont;
+    
+    
     [Header("Top Bar")]
     [SerializeField] private GameObject topBar;
     [SerializeField] private TextMeshProUGUI questionsProgressText;
@@ -92,7 +96,7 @@ public class QuizUI : MonoBehaviour
         bool isMultiSelect = data.type == "MultiSelect";
         
         string typeHint = isMultiSelect ? "(Select all that apply)" : "(Select one)";
-        questionText.text = $"{data.question}\n<size=70%>{typeHint}</size>";
+        questionText.text = $"{ParseCodeTags(data.question)}\n<size=70%><i>{typeHint}</i></size>";
         
         questionsProgressText.text = $"Question {answered}/{total}";
 
@@ -121,6 +125,23 @@ public class QuizUI : MonoBehaviour
         }
         
         screenNavigation?.SetUpSelectables();
+    }
+    
+    private string ParseCodeTags(string text)
+    {
+        string fontTag = monoFont ? $"<font=\"{monoFont}\">" : "<font=\"monospace\">";
+    
+        while (text.Contains("`"))
+        {
+            int open = text.IndexOf('`');
+            int close = text.IndexOf('`', open + 1);
+            if (close == -1) break;
+
+            string code = text.Substring(open + 1, close - open - 1);
+            string styled = $"{fontTag}<color=#A8FF60><size=85%>{code}</size></color></font>";
+            text = text.Remove(open, close - open + 1).Insert(open, styled);
+        }
+        return text;
     }
 
     private void DeselectOthers(Toggle selected)

@@ -716,7 +716,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Question Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27870ba5a75bc674abf18ccedd256495, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &201881185
@@ -960,7 +960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714199841475197382, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
       propertyPath: m_fontSize
-      value: 45.3
+      value: 51.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371754172216705668, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
       propertyPath: m_Name
@@ -1755,8 +1755,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3732f04b626d23044b4be638973df15e, type: 2}
-  m_sharedMaterial: {fileID: -59253918785398185, guid: 3732f04b626d23044b4be638973df15e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27870ba5a75bc674abf18ccedd256495, type: 2}
+  m_sharedMaterial: {fileID: 8662066003521731995, guid: 27870ba5a75bc674abf18ccedd256495, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2194,6 +2194,7 @@ MonoBehaviour:
   quizManager: {fileID: 935085985}
   screenNavigation: {fileID: 1336206980}
   canvasGroup: {fileID: 1336206981}
+  monoFont: {fileID: 0}
   topBar: {fileID: 1998569075}
   questionsProgressText: {fileID: 2092793281}
   exitButton: {fileID: 867539795}
@@ -2276,8 +2277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: -50, y: 150}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: -100, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1365030000
 GameObject:
@@ -2338,7 +2339,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Feedback Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27870ba5a75bc674abf18ccedd256495, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2405,7 +2406,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1365030003
@@ -2789,8 +2790,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: -50, y: 150}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: -100, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2092793279
 GameObject:
@@ -2851,8 +2852,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Question 1/13
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3732f04b626d23044b4be638973df15e, type: 2}
-  m_sharedMaterial: {fileID: -59253918785398185, guid: 3732f04b626d23044b4be638973df15e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27870ba5a75bc674abf18ccedd256495, type: 2}
+  m_sharedMaterial: {fileID: 8662066003521731995, guid: 27870ba5a75bc674abf18ccedd256495, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2876,12 +2877,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 55
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
