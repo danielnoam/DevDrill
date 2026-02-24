@@ -10,6 +10,7 @@ public class QuizUI : MonoBehaviour
 {
     [SerializeField, AutoGetScene] private QuizManager quizManager;
     [SerializeField, AutoGetSelf] private ScreenNavigation screenNavigation;
+    [SerializeField, AutoGetSelf] private CanvasGroup canvasGroup;
     
     
     [Header("Top Bar")]
@@ -44,6 +45,10 @@ public class QuizUI : MonoBehaviour
         exitButton.onClick.AddListener(quizManager.QuitQuiz);
         nextButton.onClick.AddListener(quizManager.NextQuestion);
         skipButton.onClick.AddListener(quizManager.SkipQuestion);
+
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     private void OnEnable()
@@ -68,6 +73,9 @@ public class QuizUI : MonoBehaviour
         questionPanel.SetActive(true);
         topBar.SetActive(true);
         feedbackPanel.SetActive(false);
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
     }
 
     private void DisplayQuestion(QuestionData data, int answered, int total)

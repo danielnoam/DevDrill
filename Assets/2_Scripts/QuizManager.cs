@@ -35,11 +35,7 @@ public class QuizManager : MonoBehaviour
         
         Instance = this;
     }
-
-    private void Start()
-    {
-        StartQuiz();
-    }
+    
 
     [Button]
     public void StartQuiz()
