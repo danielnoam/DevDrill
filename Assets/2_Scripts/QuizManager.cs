@@ -2,32 +2,53 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using DNExtensions.Utilities;
 using DNExtensions.Utilities.Button;
 using Random = UnityEngine.Random;
 
 public class QuizManager : MonoBehaviour
 {
+    public static QuizManager Instance { get; private set;}
+    public static event Action OnQuizStarted;
+    public static event Action<QuestionData, int, int> OnQuestionLoaded;
+    public static event Action<bool, string> OnAnswerSubmitted;
+    public static event Action<int, int> OnQuizFinished;
+    
+    
     [SerializeField] private QuestionLoader loader;
 
+    
     private List<QuestionData> _pool;
     private List<QuestionData> _remaining;
+    private QuestionData _currentQuestion;
+    private int _totalQuestions;
+    private int _questionsAnswered;
+    private int _correctAnswers;
 
-    public event Action<QuestionData> OnQuestionLoaded;
-    public event Action<bool, string> OnAnswerSubmitted;
-    public event Action OnQuizFinished;
-    
-    public QuestionData CurrentQuestion { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        Instance = this;
+    }
 
     private void Start()
     {
-        _pool = loader.LoadQuestions();
         StartQuiz();
     }
 
     [Button]
     public void StartQuiz()
     {
+        _pool = loader.LoadQuestions();
+        _pool.Shuffle();
+        _totalQuestions = _pool.Count;
         _remaining = new List<QuestionData>(_pool);
+        OnQuizStarted?.Invoke();
         NextQuestion();
     }
 
@@ -36,21 +57,38 @@ public class QuizManager : MonoBehaviour
     {
         if (_remaining.Count == 0)
         {
-            OnQuizFinished?.Invoke();
+            OnQuizFinished?.Invoke(_correctAnswers, _totalQuestions);
             return;
         }
         
         int index = Random.Range(0, _remaining.Count);
-        CurrentQuestion = _remaining[index];
+        _currentQuestion = _remaining[index];
         _remaining.RemoveAt(index);
-        OnQuestionLoaded?.Invoke(CurrentQuestion);
+        _questionsAnswered++;
+        OnQuestionLoaded?.Invoke(_currentQuestion, _questionsAnswered, _totalQuestions);
     }
-
+    
+    public void SkipQuestion()
+    {
+        NextQuestion();
+    }
+    
     public void Submit(int[] selectedIndices)
     {
         var selected = new HashSet<int>(selectedIndices);
-        var correct = new HashSet<int>(CurrentQuestion.correct);
+        var correct = new HashSet<int>(_currentQuestion.correct);
         bool isCorrect = selected.SetEquals(correct);
-        OnAnswerSubmitted?.Invoke(isCorrect, CurrentQuestion.explanation);
+        if (isCorrect) _correctAnswers++;
+        OnAnswerSubmitted?.Invoke(isCorrect, _currentQuestion.explanation);
     }
+    
+    public void QuitQuiz()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
+
+
 }

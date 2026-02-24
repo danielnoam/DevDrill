@@ -11,6 +11,18 @@ public class QuizUI : MonoBehaviour
     [SerializeField, AutoGetScene] private QuizManager quizManager;
     [SerializeField, AutoGetSelf] private ScreenNavigation screenNavigation;
     
+    
+    [Header("Top Bar")]
+    [SerializeField] private GameObject topBar;
+    [SerializeField] private TextMeshProUGUI questionsProgressText;
+    [SerializeField] private Button exitButton;
+    [SerializeField] private Button settingsButton;
+    
+    [Header("Botton Bar")]
+    [SerializeField] private GameObject bottomBar;
+    [SerializeField] private Button skipButton;
+    [SerializeField] private Button helpButton;
+    
     [Header("Question Panel")]
     [SerializeField] private GameObject questionPanel;
     [SerializeField] private TextMeshProUGUI questionText;
@@ -24,34 +36,41 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private Button nextButton;
 
     private readonly List<Toggle> _toggles = new();
-
+    
+    
     private void Awake()
     {
-        questionPanel.SetActive(true);
-        feedbackPanel.SetActive(false);
+        submitButton.onClick.AddListener(OnSubmitClicked);
+        exitButton.onClick.AddListener(quizManager.QuitQuiz);
+        nextButton.onClick.AddListener(quizManager.NextQuestion);
+        skipButton.onClick.AddListener(quizManager.SkipQuestion);
     }
 
     private void OnEnable()
     {
-        quizManager.OnQuestionLoaded += DisplayQuestion;
-        quizManager.OnAnswerSubmitted += ShowFeedback;
-        quizManager.OnQuizFinished += ShowFinished;
+        QuizManager.OnQuestionLoaded += DisplayQuestion;
+        QuizManager.OnAnswerSubmitted += ShowFeedback;
+        QuizManager.OnQuizFinished += QuizFinished;
+        QuizManager.OnQuizStarted += QuizStarted;
     }
 
     private void OnDisable()
     {
-        quizManager.OnQuestionLoaded -= DisplayQuestion;
-        quizManager.OnAnswerSubmitted -= ShowFeedback;
-        quizManager.OnQuizFinished -= ShowFinished;
+        QuizManager.OnQuestionLoaded -= DisplayQuestion;
+        QuizManager.OnAnswerSubmitted -= ShowFeedback;
+        QuizManager.OnQuizFinished -= QuizFinished;
+        QuizManager.OnQuizStarted -= QuizStarted;
     }
-
-    private void Start()
+    
+    
+    private void QuizStarted()
     {
-        submitButton.onClick.AddListener(OnSubmitClicked);
-        nextButton.onClick.AddListener(quizManager.NextQuestion);
+        questionPanel.SetActive(true);
+        topBar.SetActive(true);
+        feedbackPanel.SetActive(false);
     }
 
-    private void DisplayQuestion(QuestionData data)
+    private void DisplayQuestion(QuestionData data, int answered, int total)
     {
         feedbackPanel.SetActive(false);
         questionPanel.SetActive(true);
@@ -66,6 +85,8 @@ public class QuizUI : MonoBehaviour
         
         string typeHint = isMultiSelect ? "(Select all that apply)" : "(Select one)";
         questionText.text = $"{data.question}\n<size=70%>{typeHint}</size>";
+        
+        questionsProgressText.text = $"Question {answered}/{total}";
 
         foreach (string option in data.options)
         {
@@ -125,11 +146,12 @@ public class QuizUI : MonoBehaviour
             : $"Wrong!\n{explanation}";
     }
 
-    private void ShowFinished()
+    private void QuizFinished(int correct, int total)
     {
         questionPanel.SetActive(false);
+        bottomBar.SetActive(false);
         feedbackPanel.SetActive(true);
-        feedbackText.text = "Quiz Complete!";
+        feedbackText.text = $"Quiz Complete!\n{correct}/{total}";
         nextButton.gameObject.SetActive(false);
     }
 }
