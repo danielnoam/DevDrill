@@ -41,9 +41,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blue_Contrast: 1
+    - _Blue_Contrast: 0
     - _ColorMask: 15
-    - _Contrast: 1
+    - _Contrast: 0
     - _CycleTime: 3
     - _Dissolve: 0
     - _Dissolve_Amount: 0
@@ -52,7 +52,7 @@ Material:
     - _Distortion_Scale: 3
     - _Distortion_Strength: 0.06
     - _Gradient: 0
-    - _Green_Contrast: 1
+    - _Green_Contrast: 0
     - _Line_Cycle_Time: 2
     - _Line_Rotation: 335
     - _Line_Shine: 0
@@ -62,9 +62,9 @@ Material:
     - _Outline_Thickness: 0
     - _Pixel_Resulotion: 35
     - _Pixelation: 0
-    - _Rainbow: 1
+    - _Rainbow: 0
     - _Rainbow_Rotation: 61
-    - _Red_Contrast: 1
+    - _Red_Contrast: 0
     - _Ripple: 0
     - _Ripple_Count: 0.2
     - _Ripple_Speed: 1

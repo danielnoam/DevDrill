@@ -9,10 +9,12 @@ using Random = UnityEngine.Random;
 public class QuizManager : MonoBehaviour
 {
     public static QuizManager Instance { get; private set;}
+    
     public static event Action OnQuizStarted;
     public static event Action<QuestionData, int, int> OnQuestionLoaded;
     public static event Action<bool, string> OnAnswerSubmitted;
-    public static event Action<int, int> OnQuizFinished;
+    public static event Action<int, int> OnQuizCompleted;
+    public static event Action OnQuizQuit;
     
     
     [SerializeField] private QuestionLoader loader;
@@ -42,6 +44,8 @@ public class QuizManager : MonoBehaviour
     {
         _pool = loader.LoadQuestions();
         _pool.Shuffle();
+        _correctAnswers = 0;
+        _questionsAnswered = 0;
         _totalQuestions = _pool.Count;
         _remaining = new List<QuestionData>(_pool);
         OnQuizStarted?.Invoke();
@@ -53,7 +57,7 @@ public class QuizManager : MonoBehaviour
     {
         if (_remaining.Count == 0)
         {
-            OnQuizFinished?.Invoke(_correctAnswers, _totalQuestions);
+            OnQuizCompleted?.Invoke(_correctAnswers, _totalQuestions);
             return;
         }
         
@@ -80,10 +84,7 @@ public class QuizManager : MonoBehaviour
     
     public void QuitQuiz()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+        OnQuizQuit?.Invoke();
     }
 
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3710613764523027844}
   - component: {fileID: 5079898071224967598}
-  - component: {fileID: 6397986934057962599}
+  - component: {fileID: 8721116607525978261}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -46,7 +46,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733727867143740604}
   m_CullTransparentMesh: 1
---- !u!114 &6397986934057962599
+--- !u!114 &8721116607525978261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,9 +55,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733727867143740604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: bde3e84598ae01c4db2f58f008e9ebd9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.Shapes.SDFRectangle
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -66,16 +66,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f870f2de728aaeb4eb7bc074d2f28f91, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
+  m_BaseColor: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
+  m_Rotation: 0
+  m_FillType: 0
   m_FillAmount: 1
-  m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Offset: {x: 0, y: 0}
+  m_OutlineThickness: 0.045
+  m_OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SDFShader: {fileID: -6465566751694194690, guid: e616caa92c5094c48a31e485a4eadd13, type: 3}
+  m_Width: 0.45
+  m_Height: 0.45
+  m_Rounding: 0
+  m_Corners: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5144454043772732772
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55, y: 0}
-  m_SizeDelta: {x: -110, y: 0}
+  m_AnchoredPosition: {x: 62.5, y: 0}
+  m_SizeDelta: {x: -125, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2790289790088455697
 CanvasRenderer:
@@ -292,7 +295,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6397986934057962599}
+  m_TargetGraphic: {fileID: 8721116607525978261}
   toggleTransition: 1
   graphic: {fileID: 4858852868131668766}
   m_Group: {fileID: 0}
@@ -325,8 +328,8 @@ MonoBehaviour:
   rotationOffset: {x: 0, y: 0, z: 15}
   rotationDuration: 0.15
   rotationEase: 31
-  animateScale: 1
-  scaleMultiplier: 1.05
+  animateScale: 0
+  scaleMultiplier: 0.95
   scaleDuration: 0.1
   scaleEase: 4
   animateAlpha: 0
@@ -425,7 +428,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 4d940ce0a9b90234cab35959ab9f772a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
