@@ -1,0 +1,140 @@
+{
+  "questions": [
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "lifecycle", "beginner"],
+      "question": "Which Unity method is called once when the GameObject is first activated?",
+      "options": ["Update", "Start", "Awake", "OnEnable"],
+      "correct": [2],
+      "explanation": "Awake is called once when the GameObject is initialized, before Start, even if the component is disabled."
+    },
+    {
+      "type": "MultiSelect",
+      "tags": ["unity", "scriptableobjects", "beginner"],
+      "question": "Which of the following are true about ScriptableObjects?",
+      "options": ["They are assets that live in the project", "They run Update every frame", "They are good for storing shared data", "They must be attached to a GameObject"],
+      "correct": [0, 2],
+      "explanation": "ScriptableObjects are project assets used to store shared data. They don't run per-frame methods and don't need a GameObject."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "lifecycle", "beginner"],
+      "question": "What is the correct order of these Unity lifecycle methods on startup?",
+      "options": ["Start → Awake → OnEnable", "Awake → Start → OnEnable", "Awake → OnEnable → Start", "OnEnable → Awake → Start"],
+      "correct": [2],
+      "explanation": "Awake fires first, then OnEnable when the component becomes active, then Start before the first frame update."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "lifecycle", "beginner"],
+      "question": "When is OnDestroy called?",
+      "options": ["When the component is disabled", "When the scene is paused", "When the GameObject or component is destroyed", "At the end of every frame"],
+      "correct": [2],
+      "explanation": "OnDestroy is called when the GameObject or component is being destroyed, either via Destroy() or when the scene unloads."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "lifecycle", "beginner"],
+      "question": "What is the difference between FixedUpdate and Update?",
+      "options": ["FixedUpdate runs faster than Update", "FixedUpdate runs on a consistent time step, Update runs every frame", "Update is used for physics, FixedUpdate for input", "There is no difference"],
+      "correct": [1],
+      "explanation": "FixedUpdate runs on a fixed time step independent of frame rate, making it suitable for physics. Update runs once per rendered frame."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "lifecycle", "beginner"],
+      "question": "What is LateUpdate used for?",
+      "options": ["Running logic after physics", "Running logic after all Update calls have finished", "Running logic on a fixed time step", "Running logic only once"],
+      "correct": [1],
+      "explanation": "LateUpdate runs after all Update methods have been called that frame. Commonly used for camera follow logic so it runs after the target has moved."
+    },
+    {
+      "type": "MultiSelect",
+      "tags": ["unity", "lifecycle", "beginner"],
+      "question": "When do OnEnable and OnDisable fire?",
+      "options": ["OnEnable fires when the component becomes active", "OnEnable only fires once per session", "OnDisable fires when the component or GameObject is deactivated", "OnDisable fires when the scene unloads"],
+      "correct": [0, 2, 3],
+      "explanation": "OnEnable fires every time the component becomes active. OnDisable fires on deactivation and also when the scene unloads since all objects are effectively disabled."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "lifecycle", "intermediate"],
+      "question": "Can Awake be called on a disabled component?",
+      "options": ["No, the component must be enabled", "No, the GameObject must be active", "Yes, as long as the GameObject is active in the hierarchy", "Yes, regardless of the GameObject's state"],
+      "correct": [2],
+      "explanation": "Awake is called when the GameObject is active in the hierarchy, even if the component itself is disabled. It will not fire if the GameObject is inactive."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "basics", "beginner"],
+      "question": "What happens if you call `Destroy(gameObject)` inside Awake?",
+      "options": ["It throws an exception", "The GameObject is destroyed immediately before Start runs", "The GameObject is marked for destruction and destroyed at the end of the frame", "Nothing, Destroy is ignored in Awake"],
+      "correct": [2],
+      "explanation": "Destroy is never immediate unless you use DestroyImmediate. The object is marked and destroyed at the end of the current frame, so Start may still run."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "basics", "beginner"],
+      "question": "What is the difference between `Destroy` and `DestroyImmediate`?",
+      "options": ["They are identical", "DestroyImmediate skips OnDestroy", "Destroy queues destruction for end of frame, DestroyImmediate destroys instantly", "Destroy only works on components, DestroyImmediate on GameObjects"],
+      "correct": [2],
+      "explanation": "Destroy queues the object for destruction at the end of the frame. DestroyImmediate destroys it instantly and is generally only safe to use in editor scripts."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "basics", "beginner"],
+      "question": "Why should you avoid calling `FindObjectOfType` in Update?",
+      "options": ["It only works in Awake", "It throws an exception at runtime", "It searches the entire scene every call and is very expensive", "It returns null in Update"],
+      "correct": [2],
+      "explanation": "FindObjectOfType scans all objects in the scene every time it's called. Doing this every frame causes significant performance overhead."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "basics", "beginner"],
+      "question": "What does `DontDestroyOnLoad` do?",
+      "options": ["Prevents the GameObject from being destroyed by Destroy()", "Keeps the GameObject alive when a new scene is loaded", "Makes the GameObject persist between editor sessions", "Prevents the GameObject from being disabled"],
+      "correct": [1],
+      "explanation": "DontDestroyOnLoad moves the GameObject to a special scene that persists across scene loads, commonly used for managers and audio."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "scriptableobjects", "intermediate"],
+      "question": "Are changes made to a ScriptableObject asset during Play Mode persistent?",
+      "options": ["Yes, they are always saved", "No, they are reverted when you exit Play Mode", "Only if you call AssetDatabase.SaveAssets()", "Only if modified via the Inspector"],
+      "correct": [1],
+      "explanation": "Changes to ScriptableObject assets during Play Mode are reverted when you exit Play Mode, unlike runtime-created instances which are discarded anyway."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "scriptableobjects", "intermediate"],
+      "question": "What is the main difference between a ScriptableObject and a plain serializable class?",
+      "options": ["Serializable classes can be assets, ScriptableObjects cannot", "ScriptableObjects exist as shared assets, serializable classes are embedded copies inside their owner", "There is no difference", "ScriptableObjects cannot hold data"],
+      "correct": [1],
+      "explanation": "A plain serializable class is embedded and serialized inside its owner — each object gets its own copy. A ScriptableObject is a standalone asset that can be shared and referenced by many objects."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "coroutines", "beginner"],
+      "question": "What does `yield return null` do inside a coroutine?",
+      "options": ["Stops the coroutine permanently", "Pauses the coroutine until a condition is met", "Pauses the coroutine and resumes on the next frame", "Pauses the coroutine for one second"],
+      "correct": [2],
+      "explanation": "yield return null suspends the coroutine and resumes execution at the start of the next frame."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "coroutines", "intermediate"],
+      "question": "What is the difference between `WaitForSeconds` and `WaitForSecondsRealtime`?",
+      "options": ["They are identical", "WaitForSeconds is more accurate", "WaitForSeconds is affected by Time.timeScale, WaitForSecondsRealtime is not", "WaitForSecondsRealtime only works in editor"],
+      "correct": [2],
+      "explanation": "WaitForSeconds respects Time.timeScale — if the game is paused or slowed, so is the wait. WaitForSecondsRealtime uses wall clock time and is unaffected by timeScale."
+    },
+    {
+      "type": "SingleChoice",
+      "tags": ["unity", "coroutines", "intermediate"],
+      "question": "What happens to a coroutine when its GameObject is disabled?",
+      "options": ["It pauses and resumes when the GameObject is re-enabled", "It continues running in the background", "It is stopped and cannot be resumed", "It throws an exception"],
+      "correct": [2],
+      "explanation": "Disabling a GameObject stops all coroutines running on it. They are not paused — they are stopped entirely and must be restarted manually if needed."
+    }
+  ]
+}

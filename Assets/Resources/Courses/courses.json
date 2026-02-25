@@ -1,0 +1,36 @@
+{
+  "courses": [
+    {
+      "id": "csharp-fundamentals",
+      "name": "C# Fundamentals",
+      "description": "Core C# concepts for beginners",
+      "tags": ["csharp", "beginner"],
+      "excludeTags": [],
+      "matchAll": true
+    },
+    {
+      "id": "csharp-expanded",
+      "name": "C# Expanded",
+      "description": "Intermediate and advanced C# for developers who know the basics",
+      "tags": ["csharp"],
+      "excludeTags": ["beginner"],
+      "matchAll": true
+    },
+    {
+      "id": "unity-fundamentals",
+      "name": "Unity Fundamentals",
+      "description": "Core Unity concepts for beginners",
+      "tags": ["unity", "beginner"],
+      "excludeTags": [],
+      "matchAll": true
+    },
+    {
+      "id": "unity-expanded",
+      "name": "Unity Expanded",
+      "description": "Intermediate and advanced Unity for developers who know the basics",
+      "tags": ["unity"],
+      "excludeTags": ["beginner"],
+      "matchAll": true
+    }
+  ]
+}

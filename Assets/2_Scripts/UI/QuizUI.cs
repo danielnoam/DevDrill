@@ -42,6 +42,7 @@ public class QuizUI : MonoBehaviour
 
     private readonly List<Toggle> _toggles = new();
     private bool _waitingForFeedback;
+    private bool _quizCompleted;
     
     
     private void Awake()
@@ -49,18 +50,14 @@ public class QuizUI : MonoBehaviour
         continueButton.onClick.AddListener(OnContinueClicked);
         exitButton.onClick.AddListener(quizManager.QuitQuiz);
         skipButton.onClick.AddListener(quizManager.SkipQuestion);
-    }
-    
-
-    private void OnEnable()
-    {
+        
         QuizManager.OnQuestionLoaded += DisplayQuestion;
         QuizManager.OnAnswerSubmitted += ShowFeedback;
         QuizManager.OnQuizCompleted += QuizCompleted;
         QuizManager.OnQuizStarted += QuizStarted;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         QuizManager.OnQuestionLoaded -= DisplayQuestion;
         QuizManager.OnAnswerSubmitted -= ShowFeedback;
@@ -71,9 +68,35 @@ public class QuizUI : MonoBehaviour
     
     private void QuizStarted()
     {
+        _quizCompleted = false;
         questionPanel.SetActive(true);
         topBar.SetActive(true);
         feedbackPanel.SetActive(false);
+        continueButton.GetComponentInChildren<TextMeshProUGUI>().text = "Submit";
+    }
+    
+    private void QuizCompleted(int correct, int total)
+    {
+        _quizCompleted = true;
+        questionPanel.SetActive(false);
+        feedbackPanel.SetActive(true);
+        topBar.SetActive(false);
+        feedbackText.text = $"Quiz Complete!\n{correct}/{total}";
+        continueButton.interactable = true;
+        continueButton.GetComponentInChildren<TextMeshProUGUI>().text = "Return";
+    }
+    
+    private void ShowFeedback(bool correct, string explanation)
+    {
+        continueButton.GetComponentInChildren<TextMeshProUGUI>().text = "Continue";
+        _waitingForFeedback = true;
+        questionPanel.SetActive(false);
+        feedbackPanel.SetActive(true);
+
+        var titleText = correct ? $"Correct!" : $"Wrong!";
+        titleText = titleText.Rich().Color(correct ? "Green" : "Red");
+        
+        feedbackText.text = $"{titleText}\n{explanation}";
     }
 
     private void DisplayQuestion(QuestionData data, int answered, int total)
@@ -163,6 +186,12 @@ public class QuizUI : MonoBehaviour
 
     private void OnContinueClicked()
     {
+        if (_quizCompleted)
+        {
+            quizManager.QuitQuiz();
+            return;
+        }
+        
         if (_waitingForFeedback)
         {
             _waitingForFeedback = false;
@@ -181,29 +210,11 @@ public class QuizUI : MonoBehaviour
         {
             _waitingForFeedback = true;
             questionPanel.SetActive(false);
-            quizManager.Submit(selected);
+            quizManager.Submit(selected);   
         }
     }
 
-    private void ShowFeedback(bool correct, string explanation)
-    {
-        continueButton.GetComponentInChildren<TextMeshProUGUI>().text = "Continue";
-        _waitingForFeedback = true;
-        questionPanel.SetActive(false);
-        feedbackPanel.SetActive(true);
 
-        var titleText = correct ? $"Correct!" : $"Wrong!";
-        titleText = titleText.Rich().Color(correct ? "Green" : "Red");
-        
-        feedbackText.text = $"{titleText}\n{explanation}";
-    }
 
-    private void QuizCompleted(int correct, int total)
-    {
-        questionPanel.SetActive(false);
-        bottomBar.SetActive(false);
-        feedbackPanel.SetActive(true);
-        topBar.SetActive(false);
-        feedbackText.text = $"Quiz Complete!\n{correct}/{total}";
-    }
+
 }

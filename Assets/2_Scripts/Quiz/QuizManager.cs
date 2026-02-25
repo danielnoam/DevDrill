@@ -16,8 +16,6 @@ public class QuizManager : MonoBehaviour
     public static event Action<int, int> OnQuizCompleted;
     public static event Action OnQuizQuit;
     
-    
-    [SerializeField] private QuestionLoader loader;
 
     
     private List<QuestionData> _pool;
@@ -38,11 +36,20 @@ public class QuizManager : MonoBehaviour
         Instance = this;
     }
     
-
-    [Button]
-    public void StartQuiz()
+    
+    public void StartQuiz(string[] tags = null, string[] excludeTags = null)
     {
-        _pool = loader.LoadQuestions();
+        StartQuizWithPool(QuestionLoader.LoadQuestions(tags, excludeTags));
+    }
+
+    public void StartQuiz(CourseData course)
+    {
+        StartQuizWithPool(QuestionLoader.LoadQuestionsForCourse(course));
+    }
+
+    private void StartQuizWithPool(List<QuestionData> pool)
+    {
+        _pool = pool;
         _pool.Shuffle();
         _correctAnswers = 0;
         _questionsAnswered = 0;
@@ -51,7 +58,6 @@ public class QuizManager : MonoBehaviour
         OnQuizStarted?.Invoke();
         NextQuestion();
     }
-
     [Button]
     public void NextQuestion()
     {

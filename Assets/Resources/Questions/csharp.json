@@ -2,7 +2,7 @@
   "questions": [
     {
       "type": "SingleChoice",
-      "tags": ["interface", "oop"],
+      "tags": ["csharp", "oop", "beginner"],
       "question": "What is an interface in C#?",
       "options": ["A contract with no implementation", "A class that can't be instantiated", "A type of struct", "A base class"],
       "correct": [0],
@@ -10,7 +10,7 @@
     },
     {
       "type": "MultiSelect",
-      "tags": ["interface", "oop"],
+      "tags": ["csharp", "oop", "beginner"],
       "question": "Which of the following are true about interfaces?",
       "options": ["They can have method signatures", "They can have fields", "A class can implement multiple interfaces", "They can be instantiated directly"],
       "correct": [0, 2],
@@ -18,7 +18,7 @@
     },
     {
       "type": "SingleChoice",
-      "tags": ["oop"],
+      "tags": ["csharp", "oop", "beginner"],
       "question": "What does polymorphism allow you to do?",
       "options": ["Hide class fields", "Treat different types through a shared interface", "Prevent inheritance", "Define multiple constructors"],
       "correct": [1],
@@ -26,7 +26,7 @@
     },
     {
       "type": "SingleChoice",
-      "tags": ["oop", "inheritance"],
+      "tags": ["csharp", "oop", "inheritance", "beginner"],
       "question": "What is the purpose of the 'abstract' keyword on a class?",
       "options": ["It makes all methods private", "It prevents the class from being inherited", "It prevents the class from being instantiated directly", "It makes the class static"],
       "correct": [2],
@@ -34,7 +34,7 @@
     },
     {
       "type": "MultiSelect",
-      "tags": ["oop", "inheritance"],
+      "tags": ["csharp", "oop", "inheritance", "intermediate"],
       "question": "What are the differences between an abstract class and an interface?",
       "options": ["Abstract classes can have constructors", "Interfaces can have fields", "A class can inherit multiple abstract classes", "Abstract classes can have implemented methods"],
       "correct": [0, 3],
@@ -42,7 +42,7 @@
     },
     {
       "type": "SingleChoice",
-      "tags": ["csharp", "basics"],
+      "tags": ["csharp", "basics", "beginner"],
       "question": "What is the difference between a struct and a class in C#?",
       "options": ["Structs support inheritance", "Structs are value types, classes are reference types", "Classes are stored on the stack", "There is no difference"],
       "correct": [1],
@@ -50,7 +50,7 @@
     },
     {
       "type": "SingleChoice",
-      "tags": ["csharp", "basics"],
+      "tags": ["csharp", "basics", "beginner"],
       "question": "What does the 'static' keyword mean on a method?",
       "options": ["The method can only be called once", "The method belongs to the type, not an instance", "The method cannot return a value", "The method is thread safe"],
       "correct": [1],
@@ -58,7 +58,7 @@
     },
     {
       "type": "MultiSelect",
-      "tags": ["csharp", "collections"],
+      "tags": ["csharp", "collections", "beginner"],
       "question": "Which of the following are true about a List<T> in C#?",
       "options": ["It has a fixed size", "It is generic", "Elements can be accessed by index", "It only stores reference types"],
       "correct": [1, 2],
@@ -66,23 +66,7 @@
     },
     {
       "type": "SingleChoice",
-      "tags": ["unity", "basics"],
-      "question": "Which Unity method is called once when the GameObject is first activated?",
-      "options": ["Update", "Start", "Awake", "OnEnable"],
-      "correct": [2],
-      "explanation": "Awake is called once when the GameObject is initialized, before Start, even if the component is disabled."
-    },
-    {
-      "type": "MultiSelect",
-      "tags": ["unity", "basics"],
-      "question": "Which of the following are true about ScriptableObjects?",
-      "options": ["They are assets that live in the project", "They run Update every frame", "They are good for storing shared data", "They must be attached to a GameObject"],
-      "correct": [0, 2],
-      "explanation": "ScriptableObjects are project assets used to store shared data. They don't run per-frame methods and don't need a GameObject."
-    },
-    {
-      "type": "SingleChoice",
-      "tags": ["csharp", "oop"],
+      "tags": ["csharp", "oop", "beginner"],
       "question": "What does the 'sealed' keyword do to a class?",
       "options": ["Prevents it from being instantiated", "Prevents it from being inherited", "Makes all its members private", "Makes it a singleton"],
       "correct": [1],
@@ -90,7 +74,7 @@
     },
     {
       "type": "SingleChoice",
-      "tags": ["csharp", "basics"],
+      "tags": ["csharp", "basics", "intermediate"],
       "question": "What is the output of this code?\n`int x = 5; Console.WriteLine(x++);`",
       "options": ["6", "5", "4", "Compile error"],
       "correct": [1],
