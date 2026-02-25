@@ -474,8 +474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   startButton: {fileID: 436763745}
   coursesContainer: {fileID: 1129600013}
-  courseButtonPrefab: {fileID: 1750193044392095324, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
-  screenNavigation: {fileID: 159276707}
+  courseButtonPrefab: {fileID: 8833204361930037137, guid: 2115365997afb144c865d424fe23d9fb, type: 3}
+  quizManager: {fileID: 935085985}
 --- !u!225 &159276705
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1354,6 +1354,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 17.3
       objectReference: {fileID: 0}
+    - target: {fileID: 7668048813633856642, guid: 2bbef1d474bc4e34c9210de143bbc730, type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 701882933}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2786,7 +2790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714199841475197382, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
       propertyPath: m_fontSize
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6371754172216705668, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
       propertyPath: m_Name

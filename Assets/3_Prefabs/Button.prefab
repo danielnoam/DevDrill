@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 8495612508537907114}
   - component: {fileID: 1750193044392095324}
   - component: {fileID: 2079874325988435772}
+  - component: {fileID: 7863741141795616349}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -276,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c641a4da1748fa866e29dd0aa259af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.MenuSystem.SelectableAnimator
+  resetOnDisable: 1
   positionEffectType: 0
   positionOffset: {x: 0, y: 10, z: 0}
   positionDuration: 0.15
@@ -322,3 +324,22 @@ MonoBehaviour:
     m_RotationOrder: 4
   selectable: {fileID: 1750193044392095324}
   rectTransform: {fileID: 4264375122233878755}
+--- !u!114 &7863741141795616349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371754172216705668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3bb5ed52a0416bb8404f4a3b4d2c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.AudioLibrary.SelectableAudioPlayer
+  onHover: 0
+  hoverAudioID: ButtonPressed
+  onUnhover: 0
+  unhoverAudioID: ButtonPressed
+  onSelect: 1
+  selectAudioID: ButtonPressed
+  selectable: {fileID: 1750193044392095324}

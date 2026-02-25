@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -8,22 +7,15 @@ using Random = UnityEngine.Random;
 
 public class QuizManager : MonoBehaviour
 {
-    public static QuizManager Instance { get; private set;}
+    public static QuizManager Instance { get; private set; }
     
     public static event Action OnQuizStarted;
     public static event Action<QuestionData, int, int> OnQuestionLoaded;
     public static event Action<bool, string> OnAnswerSubmitted;
     public static event Action<int, int> OnQuizCompleted;
     public static event Action OnQuizQuit;
-    
 
-    
-    private List<QuestionData> _pool;
-    private List<QuestionData> _remaining;
-    private QuestionData _currentQuestion;
-    private int _totalQuestions;
-    private int _questionsAnswered;
-    private int _correctAnswers;
+    private Quiz _activeQuiz;
 
     private void Awake()
     {
@@ -32,66 +24,88 @@ public class QuizManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
         Instance = this;
     }
-    
-    
+
     public void StartQuiz(string[] tags = null, string[] excludeTags = null)
     {
-        StartQuizWithPool(QuestionLoader.LoadQuestions(tags, excludeTags));
+        var questions = QuestionLoader.LoadQuestions(tags, excludeTags);
+        StartQuizWithPool(questions, null);
     }
 
     public void StartQuiz(CourseData course)
     {
-        StartQuizWithPool(QuestionLoader.LoadQuestionsForCourse(course));
+        var questions = QuestionLoader.LoadQuestionsForCourse(course);
+        var answered = ProgressManager.GetAnsweredIds(course.id);
+        questions.RemoveAll(q => answered.Contains(q.id));
+
+        if (questions.Count == 0)
+        {
+            ProgressManager.ClearProgress(course.id);
+            questions = QuestionLoader.LoadQuestionsForCourse(course);
+        }
+
+        StartQuizWithPool(questions, course);
     }
 
-    private void StartQuizWithPool(List<QuestionData> pool)
+    private void StartQuizWithPool(List<QuestionData> pool, CourseData course)
     {
-        _pool = pool;
-        _pool.Shuffle();
-        _correctAnswers = 0;
-        _questionsAnswered = 0;
-        _totalQuestions = _pool.Count;
-        _remaining = new List<QuestionData>(_pool);
+        pool.Shuffle();
+        
+        _activeQuiz = new Quiz
+        {
+            remaining = new List<QuestionData>(pool),
+            course = course,
+            totalQuestions = pool.Count,
+            questionsAnswered = 0,
+            correctAnswers = 0
+        };
+        
         OnQuizStarted?.Invoke();
         NextQuestion();
     }
+
     [Button]
     public void NextQuestion()
     {
-        if (_remaining.Count == 0)
+        if (_activeQuiz.remaining.Count == 0)
         {
-            OnQuizCompleted?.Invoke(_correctAnswers, _totalQuestions);
+            OnQuizCompleted?.Invoke(_activeQuiz.correctAnswers, _activeQuiz.totalQuestions);
             return;
         }
+
+        int index = Random.Range(0, _activeQuiz.remaining.Count);
+        _activeQuiz.currentQuestion = _activeQuiz.remaining[index];
+        _activeQuiz.currentQuestion.ShuffleOptions();
+        _activeQuiz.remaining.RemoveAt(index);
+        _activeQuiz.questionsAnswered++;
         
-        int index = Random.Range(0, _remaining.Count);
-        _currentQuestion = _remaining[index];
-        _remaining.RemoveAt(index);
-        _questionsAnswered++;
-        OnQuestionLoaded?.Invoke(_currentQuestion, _questionsAnswered, _totalQuestions);
+        OnQuestionLoaded?.Invoke(_activeQuiz.currentQuestion, _activeQuiz.questionsAnswered, _activeQuiz.totalQuestions);
     }
-    
+
     public void SkipQuestion()
     {
         NextQuestion();
     }
-    
+
     public void Submit(int[] selectedIndices)
     {
         var selected = new HashSet<int>(selectedIndices);
-        var correct = new HashSet<int>(_currentQuestion.correct);
+        var correct = new HashSet<int>(_activeQuiz.currentQuestion.correct);
         bool isCorrect = selected.SetEquals(correct);
-        if (isCorrect) _correctAnswers++;
-        OnAnswerSubmitted?.Invoke(isCorrect, _currentQuestion.explanation);
+        
+        if (isCorrect)
+        {
+            _activeQuiz.correctAnswers++;
+            if (_activeQuiz.IsCourse) ProgressManager.SaveAnswered(_activeQuiz.course.id, _activeQuiz.currentQuestion.id);
+        }
+        
+        OnAnswerSubmitted?.Invoke(isCorrect, _activeQuiz.currentQuestion.explanation);
     }
-    
+
     public void QuitQuiz()
     {
+        _activeQuiz = null;
         OnQuizQuit?.Invoke();
     }
-
-
 }

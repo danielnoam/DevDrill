@@ -1,6 +1,7 @@
 {
   "questions": [
     {
+      "id": "csharp-oop-interface-what",
       "type": "SingleChoice",
       "tags": ["csharp", "oop", "beginner"],
       "question": "What is an interface in C#?",
@@ -9,6 +10,7 @@
       "explanation": "An interface defines a contract — method signatures with no implementation."
     },
     {
+      "id": "csharp-oop-interface-true",
       "type": "MultiSelect",
       "tags": ["csharp", "oop", "beginner"],
       "question": "Which of the following are true about interfaces?",
@@ -17,6 +19,7 @@
       "explanation": "Interfaces support multiple implementation but cannot have fields or be instantiated."
     },
     {
+      "id": "csharp-oop-polymorphism",
       "type": "SingleChoice",
       "tags": ["csharp", "oop", "beginner"],
       "question": "What does polymorphism allow you to do?",
@@ -25,6 +28,7 @@
       "explanation": "Polymorphism lets you write code against a base type or interface and have different behavior at runtime."
     },
     {
+      "id": "csharp-oop-abstract-keyword",
       "type": "SingleChoice",
       "tags": ["csharp", "oop", "inheritance", "beginner"],
       "question": "What is the purpose of the 'abstract' keyword on a class?",
@@ -33,6 +37,7 @@
       "explanation": "Abstract classes cannot be instantiated directly — they are meant to be inherited and their abstract members overridden."
     },
     {
+      "id": "csharp-oop-abstract-vs-interface",
       "type": "MultiSelect",
       "tags": ["csharp", "oop", "inheritance", "intermediate"],
       "question": "What are the differences between an abstract class and an interface?",
@@ -41,6 +46,7 @@
       "explanation": "Abstract classes can have constructors and fully implemented methods. Interfaces cannot have fields, and C# does not support multiple class inheritance."
     },
     {
+      "id": "csharp-basics-struct-vs-class",
       "type": "SingleChoice",
       "tags": ["csharp", "basics", "beginner"],
       "question": "What is the difference between a struct and a class in C#?",
@@ -49,6 +55,7 @@
       "explanation": "Structs are value types stored on the stack, classes are reference types stored on the heap."
     },
     {
+      "id": "csharp-basics-static-method",
       "type": "SingleChoice",
       "tags": ["csharp", "basics", "beginner"],
       "question": "What does the 'static' keyword mean on a method?",
@@ -57,6 +64,7 @@
       "explanation": "Static methods belong to the type itself and can be called without creating an instance."
     },
     {
+      "id": "csharp-collections-list",
       "type": "MultiSelect",
       "tags": ["csharp", "collections", "beginner"],
       "question": "Which of the following are true about a List<T> in C#?",
@@ -65,6 +73,7 @@
       "explanation": "List<T> is generic and supports index access. It is dynamic in size and can store both value and reference types."
     },
     {
+      "id": "csharp-oop-sealed",
       "type": "SingleChoice",
       "tags": ["csharp", "oop", "beginner"],
       "question": "What does the 'sealed' keyword do to a class?",
@@ -73,6 +82,7 @@
       "explanation": "A sealed class cannot be used as a base class — no other class can inherit from it."
     },
     {
+      "id": "csharp-basics-post-increment",
       "type": "SingleChoice",
       "tags": ["csharp", "basics", "intermediate"],
       "question": "What is the output of this code?\n`int x = 5; Console.WriteLine(x++);`",

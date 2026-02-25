@@ -110,7 +110,7 @@ public class QuizUI : MonoBehaviour
         feedbackPanel.SetActive(false);
         questionPanel.SetActive(true);
         UpdateContinueButton();
-
+        
         bool isMultiSelect = data.type == "MultiSelect";
         string typeHint = isMultiSelect ? "(Select all that apply)" : "(Select one)";
         

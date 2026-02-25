@@ -9,10 +9,14 @@ namespace DNExtensions.Systems.MenuSystem
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Selectable))]
+    [AddComponentMenu("DNExtensions/Menu System/Selectable Animator")]
     public class SelectableAnimator : MonoBehaviour
     {
+        
+        [SerializeField] private bool resetOnDisable = true;
+
         [Header("Position")] 
-        [SerializeField] private PositionEffectType positionEffectType = PositionEffectType.Shake;
+        [SerializeField] private PositionEffectType positionEffectType = PositionEffectType.None;
         [ShowIf("IsOffsetMode"), SerializeField] private Vector3 positionOffset = new Vector3(0, 10, 0);
         [ShowIf("IsOffsetMode"), SerializeField] private float positionDuration = 0.15f;
         [ShowIf("IsOffsetMode"), SerializeField] private Ease positionEase = Ease.InOutBounce;
@@ -40,10 +44,9 @@ namespace DNExtensions.Systems.MenuSystem
         [SerializeField] private float selectedAlpha = 1f;
         [SerializeField] private float alphaDuration = 0.5f;
         [SerializeField] private AnimationCurve alphaCurve = AnimationCurve.Linear(0, 0, 1, 1);
-
-        [Space(10)] 
-        [SerializeField, ReadOnly, AutoGetSelf] private Selectable selectable;
-        [SerializeField, ReadOnly, AutoGetSelf] private RectTransform rectTransform;
+        
+        [SerializeField, HideInInspector, AutoGetSelf] private Selectable selectable;
+        [SerializeField, HideInInspector, AutoGetSelf] private RectTransform rectTransform;
 
         private Vector3 _originalPosition;
         private Vector3 _originalScale;
@@ -67,6 +70,8 @@ namespace DNExtensions.Systems.MenuSystem
 
         private void OnDisable()
         {
+            if (!resetOnDisable) return;
+            
             if (positionEffectType == PositionEffectType.Offset) rectTransform.anchoredPosition3D = _originalPosition;
             if (animateScale) selectable.transform.localScale = _originalScale;
             if (animateRotation) selectable.transform.localRotation = Quaternion.Euler(_originalRotation);
