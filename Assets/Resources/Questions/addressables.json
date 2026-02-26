@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "id": "addressables-what-is",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["unity", "addressables"],
+      "question": "What does the Unity Addressables system replace compared to `Resources.Load`?",
+      "options": ["It replaces ScriptableObjects for data storage", "It provides asynchronous, reference-counted asset loading without requiring assets to be in a Resources folder", "It replaces the AssetBundle system entirely with no async support", "It only works for remote assets"],
+      "correct": [1],
+      "explanation": "Addressables loads assets by address asynchronously, handles reference counting, and works with both local and remote assets. It is the recommended replacement for Resources.Load in scalable projects."
+    },
+    {
+      "id": "addressables-async-load",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["unity", "addressables", "async"],
+      "question": "What does `Addressables.LoadAssetAsync<T>` return?",
+      "options": ["The asset directly", "A Task<T>", "An AsyncOperationHandle<T>", "A Coroutine"],
+      "correct": [2],
+      "explanation": "LoadAssetAsync returns an AsyncOperationHandle<T>. You can yield it in a coroutine, await it with Addressables' async support, or register a Completed callback."
+    },
+    {
+      "id": "addressables-release",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["unity", "addressables"],
+      "question": "What happens if you never call `Addressables.Release` on a loaded asset?",
+      "options": ["The asset is automatically released when the scene unloads", "The reference count never reaches zero and the asset stays in memory until the app exits", "Unity prints a warning but releases it anyway", "It causes an immediate crash"],
+      "correct": [1],
+      "explanation": "Addressables uses reference counting. Each LoadAssetAsync increments the count. Without a matching Release, the count never drops to zero and the asset is never unloaded, causing a memory leak."
+    },
+    {
+      "id": "addressables-instantiate-vs-load",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["unity", "addressables"],
+      "question": "What is the difference between `Addressables.InstantiateAsync` and `Addressables.LoadAssetAsync` for a prefab?",
+      "options": ["InstantiateAsync loads the asset only, LoadAssetAsync also instantiates it", "LoadAssetAsync instantiates the prefab, InstantiateAsync only loads it", "InstantiateAsync loads and instantiates the prefab, and releasing the handle destroys the instance", "They are identical for prefabs"],
+      "correct": [2],
+      "explanation": "InstantiateAsync loads the prefab and instantiates it. Calling Addressables.ReleaseInstance on the handle destroys the GameObject and releases the asset. LoadAssetAsync only loads — you manage instantiation and release separately."
+    },
+    {
+      "id": "addressables-label",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["unity", "addressables"],
+      "question": "What are Addressables labels used for?",
+      "options": ["Renaming assets in the project", "Grouping assets so you can load or release multiple assets at once using a single key", "Marking assets as remote-only", "Assigning an asset to a specific memory budget"],
+      "correct": [1],
+      "explanation": "Labels let you tag multiple assets with the same identifier. You can then call LoadAssetsAsync with a label to load the entire group at once — useful for loading all assets for a level or category."
+    },
+    {
+      "id": "addressables-operation-handle-status",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["unity", "addressables"],
+      "question": "How should you check whether an `AsyncOperationHandle` completed successfully?",
+      "options": ["Check handle.Result != null", "Check handle.Status == AsyncOperationStatus.Succeeded", "Check handle.IsDone", "Try/catch around the await"],
+      "correct": [1],
+      "explanation": "handle.Status returns AsyncOperationStatus.Succeeded, Failed, or None. Checking IsDone only tells you it finished, not whether it succeeded. Always check Status after completion before using Result."
+    },
+    {
+      "id": "addressables-groups",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["unity", "addressables"],
+      "question": "What is an Addressables Group?",
+      "options": ["A folder of assets in the Project window", "A collection of addressable assets that share the same build and load settings", "A label applied to a single asset", "A runtime container for loaded assets"],
+      "correct": [1],
+      "explanation": "Groups define how assets are packed (into AssetBundles) and where they load from (local or remote). Assets in the same group are bundled together unless pack settings split them."
+    },
+    {
+      "id": "addressables-profile",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["unity", "addressables"],
+      "question": "What does an Addressables Profile control?",
+      "options": ["Which assets get included in the build", "The paths and URLs used to locate built asset bundles at runtime", "The memory limit per asset group", "The compression format of assets"],
+      "correct": [1],
+      "explanation": "Profiles define variables like build path and load path. Switching profiles lets you point a build at a local server, CDN, or production URL without changing asset settings."
+    },
+    {
+      "id": "addressables-remote-catalog",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": ["unity", "addressables"],
+      "question": "What is the purpose of a remote content catalog in Addressables?",
+      "options": ["It stores asset metadata on-device for faster lookup", "It allows the game to check for updated asset bundles without requiring a full app update", "It caches all assets after first download", "It replaces the local catalog entirely"],
+      "correct": [1],
+      "explanation": "A remote catalog is a JSON file hosted on a server that maps addresses to bundle locations. At startup the game downloads it, enabling hot-updates to assets without a new app store submission."
+    },
+    {
+      "id": "addressables-asset-reference",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["unity", "addressables"],
+      "question": "What is the advantage of using `AssetReference` in a serialized field instead of a direct object reference for an addressable asset?",
+      "options": ["AssetReference prevents the asset from being loaded at all", "It keeps the reference without loading the asset into memory at startup", "AssetReference is faster to load than a direct reference", "It compresses the asset automatically"],
+      "correct": [1],
+      "explanation": "A direct serialized reference forces Unity to load the asset into memory when the owning object loads. AssetReference stores only the GUID — the actual asset isn't loaded until you call LoadAssetAsync on it."
+    }
+  ]
+}

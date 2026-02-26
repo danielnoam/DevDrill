@@ -1,0 +1,103 @@
+{
+  "tags": [
+    {
+      "id": "csharp",
+      "label": "C#",
+      "summary": "C# is the primary language used in Unity development. It is a statically typed, object-oriented language running on the .NET runtime.",
+      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/"]
+    },
+    {
+      "id": "unity",
+      "label": "Unity",
+      "summary": "Unity is a cross-platform game engine. Scripts inherit from MonoBehaviour and interact with the engine through a defined lifecycle.",
+      "links": ["https://docs.unity3d.com/Manual/index.html"]
+    },
+    {
+      "id": "lifecycle",
+      "label": "Unity Lifecycle",
+      "summary": "Unity calls methods on MonoBehaviours in a defined order: Awake → OnEnable → Start → FixedUpdate → Update → LateUpdate → OnDisable → OnDestroy.",
+      "links": ["https://docs.unity3d.com/Manual/ExecutionOrder.html"]
+    },
+    {
+      "id": "basics",
+      "label": "Basics",
+      "summary": "Fundamental patterns and practices in Unity or C# that every developer should know before moving to advanced topics.",
+      "links": []
+    },
+    {
+      "id": "oop",
+      "label": "Object-Oriented Programming",
+      "summary": "OOP organises code around objects with data and behaviour. Core pillars are encapsulation, inheritance, polymorphism, and abstraction.",
+      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/oop"]
+    },
+    {
+      "id": "inheritance",
+      "label": "Inheritance",
+      "summary": "Inheritance lets a class derive from another, reusing and extending its behaviour. C# supports single class inheritance but multiple interface implementation.",
+      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance"]
+    },
+    {
+      "id": "collections",
+      "label": "Collections",
+      "summary": "C# collections (List, Dictionary, HashSet, Queue, etc.) are in System.Collections.Generic. Choosing the right collection for access patterns matters for performance.",
+      "links": ["https://learn.microsoft.com/en-us/dotnet/standard/collections/"]
+    },
+    {
+      "id": "scriptableobjects",
+      "label": "ScriptableObjects",
+      "summary": "ScriptableObjects are Unity assets that store data independently of any scene. They are ideal for shared configuration, events, and decoupling systems.",
+      "links": ["https://docs.unity3d.com/Manual/class-ScriptableObject.html"]
+    },
+    {
+      "id": "coroutines",
+      "label": "Coroutines",
+      "summary": "Coroutines are Unity's built-in way to spread work across multiple frames using yield. They run on the main thread and are not true multithreading.",
+      "links": ["https://docs.unity3d.com/Manual/Coroutines.html"]
+    },
+    {
+      "id": "async",
+      "label": "Async / Await",
+      "summary": "C# async/await enables asynchronous programming using Tasks. In Unity, UniTask is preferred over Task for performance and integration with the main thread.",
+      "links": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
+        "https://github.com/Cysharp/UniTask"
+      ]
+    },
+    {
+      "id": "addressables",
+      "label": "Addressables",
+      "summary": "Unity Addressables is an asset management system that loads assets by address (string or AssetReference) asynchronously. It replaces Resources.Load for scalable projects.",
+      "links": ["https://docs.unity3d.com/Packages/com.unity.addressables@latest"]
+    },
+    {
+      "id": "events",
+      "label": "Events & Delegates",
+      "summary": "Delegates are type-safe function pointers. Events wrap delegates with subscribe/unsubscribe semantics. Action and Func are built-in generic delegate types.",
+      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/events/"]
+    },
+    {
+      "id": "linq",
+      "label": "LINQ",
+      "summary": "LINQ (Language Integrated Query) provides a fluent API for filtering, transforming, and aggregating collections. Avoid it in hot paths due to allocation overhead.",
+      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/linq/"]
+    },
+    {
+      "id": "memory",
+      "label": "Memory & Performance",
+      "summary": "C# uses a garbage collector. Frequent allocations on the heap cause GC spikes. Techniques like object pooling, structs, and Span<T> reduce GC pressure.",
+      "links": ["https://docs.unity3d.com/Manual/performance-garbage-collector.html"]
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "summary": "Unity physics runs in FixedUpdate. Rigidbody controls physical simulation. Use Physics.Raycast and OverlapSphere for spatial queries.",
+      "links": ["https://docs.unity3d.com/Manual/PhysicsSection.html"]
+    },
+    {
+      "id": "patterns",
+      "label": "Design Patterns",
+      "summary": "Design patterns are reusable solutions to common problems. Common ones in Unity include Singleton, Observer, Command, Object Pool, and Service Locator.",
+      "links": ["https://gameprogrammingpatterns.com/"]
+    }
+  ]
+}

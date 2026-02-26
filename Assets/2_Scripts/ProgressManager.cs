@@ -39,7 +39,7 @@ public static class ProgressManager
 
     public static void ClearAllProgress()
     {
-        var courses = QuestionLoader.LoadCourses();
+        var courses = DataLoader.LoadCourses();
         foreach (var course in courses)
             PlayerPrefs.DeleteKey(Prefix + course.id);
         PlayerPrefs.Save();

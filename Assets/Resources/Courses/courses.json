@@ -4,33 +4,41 @@
       "id": "csharp-fundamentals",
       "name": "C# Fundamentals",
       "description": "Core C# concepts for beginners",
-      "tags": ["csharp", "beginner"],
+      "tags": ["csharp"],
       "excludeTags": [],
-      "matchAll": true
+      "matchAll": false
     },
     {
       "id": "csharp-expanded",
       "name": "C# Expanded",
-      "description": "Intermediate and advanced C# for developers who know the basics",
+      "description": "Intermediate and advanced C#",
       "tags": ["csharp"],
-      "excludeTags": ["beginner"],
-      "matchAll": true
+      "excludeTags": [],
+      "matchAll": false
     },
     {
       "id": "unity-fundamentals",
       "name": "Unity Fundamentals",
       "description": "Core Unity concepts for beginners",
-      "tags": ["unity", "beginner"],
+      "tags": ["unity"],
       "excludeTags": [],
-      "matchAll": true
+      "matchAll": false
     },
     {
       "id": "unity-expanded",
       "name": "Unity Expanded",
-      "description": "Intermediate and advanced Unity for developers who know the basics",
+      "description": "Intermediate and advanced Unity",
       "tags": ["unity"],
-      "excludeTags": ["beginner"],
-      "matchAll": true
+      "excludeTags": [],
+      "matchAll": false
+    },
+    {
+      "id": "addressables",
+      "name": "Addressables",
+      "description": "Unity's asset management system for scalable projects",
+      "tags": ["addressables"],
+      "excludeTags": [],
+      "matchAll": false
     }
   ]
 }

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using DNExtensions.Systems.MenuSystem;
 using DNExtensions.Utilities;
 using DNExtensions.Utilities.AutoGet;
+using DNExtensions.Utilities.Inline;
 using Utkaka.ScaleNineSlicer.UI;
 
 public class QuizUI : MonoBehaviour
@@ -30,12 +31,10 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject questionPanel;
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private Transform optionsContainer;
-    [SerializeField] private GameObject optionButtonPrefab;
+    [SerializeField] private Toggle optionButtonPrefab;
+    [SerializeField, Inline] private SOCodeBlockStyle codeBlockStyle;
     
-    [Header("Code Text")]
-    [SerializeField] private TMP_FontAsset monospaceFont;
-    [SerializeField] private Color codeHighlightColor;
-    [SerializeField, Range(0,100)] private int codeFontSizeMultiplier = 85;
+
     
     [SerializeField, AutoGetScene, HideInInspector] private QuizManager quizManager;
     [SerializeField, AutoGetSelf, HideInInspector] private ScreenNavigation screenNavigation;
@@ -114,15 +113,14 @@ public class QuizUI : MonoBehaviour
         bool isMultiSelect = data.type == "MultiSelect";
         string typeHint = isMultiSelect ? "(Select all that apply)" : "(Select one)";
         
-        questionText.text = $"{ParseCodeTags(data.question)}\n<size=70%><i>{typeHint}</i></size>";
+        questionText.text = $"{codeBlockStyle.ParseCodeTags(data.question)}\n<size=70%><i>{typeHint}</i></size>";
         questionsProgressText.text = $"Question {answered}/{total}";
         progressBarFill.fillAmount = (float)answered / total;
 
         foreach (string option in data.options)
         {
-            var obj = Instantiate(optionButtonPrefab, optionsContainer);
-            var toggle = obj.GetComponent<Toggle>();
-            obj.GetComponentInChildren<TextMeshProUGUI>().text = option;
+            var toggle = Instantiate(optionButtonPrefab, optionsContainer);
+            toggle.GetComponentInChildren<TextMeshProUGUI>().text = option;
 
             toggle.onValueChanged.AddListener(val =>
             {
@@ -150,17 +148,7 @@ public class QuizUI : MonoBehaviour
         screenNavigation?.SetUpSelectables();
     }
     
-    private string ParseCodeTags(string text)
-    {
-        string fontName = monospaceFont ? monospaceFont.name : "LiberationSans SDF";
 
-        return Regex.Replace(text, @"`([^`]+)`", m => 
-            m.Groups[1].Value.Rich()
-                .Font(fontName)
-                .Color(codeHighlightColor.ToHex())
-                .Size($"{codeFontSizeMultiplier}%")
-                .ToString());
-    }
 
     private void DeselectOthers(Toggle selected)
     {

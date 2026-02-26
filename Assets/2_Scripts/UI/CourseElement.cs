@@ -3,12 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using Utkaka.ScaleNineSlicer.UI;
 
-public class CourseButton : MonoBehaviour
+public class CourseElement : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private SlicedImage progressBarFill;
     [SerializeField] private Button button;
+    [SerializeField] private Color progressCompleteColor = Color.lightGreen;
 
     private Color _progressBaseColor;
     
@@ -32,7 +33,7 @@ public class CourseButton : MonoBehaviour
 
         if (answered >= total && total > 0)
         {
-            progressBarFill.color = Color.green;
+            progressBarFill.color = progressCompleteColor;
         }
         else
         {

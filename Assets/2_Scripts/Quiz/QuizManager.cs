@@ -29,20 +29,20 @@ public class QuizManager : MonoBehaviour
 
     public void StartQuiz(string[] tags = null, string[] excludeTags = null)
     {
-        var questions = QuestionLoader.LoadQuestions(tags, excludeTags);
+        var questions = DataLoader.LoadQuestions(tags, excludeTags);
         StartQuizWithPool(questions, null);
     }
 
     public void StartQuiz(CourseData course)
     {
-        var questions = QuestionLoader.LoadQuestionsForCourse(course);
+        var questions = DataLoader.LoadQuestionsForCourse(course);
         var answered = ProgressManager.GetAnsweredIds(course.id);
         questions.RemoveAll(q => answered.Contains(q.id));
 
         if (questions.Count == 0)
         {
             ProgressManager.ClearProgress(course.id);
-            questions = QuestionLoader.LoadQuestionsForCourse(course);
+            questions = DataLoader.LoadQuestionsForCourse(course);
         }
 
         StartQuizWithPool(questions, course);

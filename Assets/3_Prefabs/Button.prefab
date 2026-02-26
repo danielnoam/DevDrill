@@ -291,7 +291,7 @@ MonoBehaviour:
   rotationOffset: {x: 0, y: 0, z: 15}
   rotationDuration: 0.15
   rotationEase: 31
-  animateScale: 1
+  animateScale: 0
   scaleMultiplier: 0.9
   scaleDuration: 0.1
   scaleEase: 4

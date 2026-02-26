@@ -9,6 +9,7 @@ public class CourseData
     public string[] tags;
     public string[] excludeTags;
     public bool matchAll;
+
 }
 
 [Serializable]

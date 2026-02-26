@@ -7,6 +7,7 @@ public class QuestionData
 {
     public string id;
     public string type;
+    public string difficulty;
     public string[] tags;
     public string question;
     public string[] options;
