@@ -414,10 +414,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.AudioLibrary.SelectableAudioPlayer
   onHover: 0
-  hoverAudioID: 
+  hoverAudioID: ButtonPressed
   onUnhover: 0
-  unhoverAudioID: 
-  onSelect: 1
+  unhoverAudioID: ButtonPressed
+  onSelect: 0
   selectAudioID: ButtonPressed
   selectable: {fileID: 4505560767643477321}
 --- !u!1 &5709695855629590905

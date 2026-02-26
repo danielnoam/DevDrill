@@ -32,7 +32,7 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private Transform optionsContainer;
     [SerializeField] private Toggle optionButtonPrefab;
-    [SerializeField, Inline] private SOCodeBlockStyle codeBlockStyle;
+    [SerializeField, Inline] private SOFontStyle fontStyle;
     
 
     
@@ -113,7 +113,9 @@ public class QuizUI : MonoBehaviour
         bool isMultiSelect = data.type == "MultiSelect";
         string typeHint = isMultiSelect ? "(Select all that apply)" : "(Select one)";
         
-        questionText.text = $"{codeBlockStyle.ParseCodeTags(data.question)}\n<size=70%><i>{typeHint}</i></size>";
+        string parsed = Regex.Replace(data.question, @"`([^`]+)`", m => fontStyle.ApplyStyle(m.Groups[1].Value));
+        questionText.text = $"{parsed}\n<size=70%><i>{typeHint}</i></size>";
+        
         questionsProgressText.text = $"Question {answered}/{total}";
         progressBarFill.fillAmount = (float)answered / total;
 

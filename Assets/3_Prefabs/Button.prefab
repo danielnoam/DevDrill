@@ -340,6 +340,6 @@ MonoBehaviour:
   hoverAudioID: ButtonPressed
   onUnhover: 0
   unhoverAudioID: ButtonPressed
-  onSelect: 1
+  onSelect: 0
   selectAudioID: ButtonPressed
   selectable: {fileID: 1750193044392095324}

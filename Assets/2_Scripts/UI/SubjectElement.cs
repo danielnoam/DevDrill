@@ -10,6 +10,7 @@ public class SubjectElement : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private float expandDuration = 0.2f;
+    [SerializeField] private float expendHeightMultiplier = 0.35f;
 
     private RectTransform _rectTransform;
     private float _collapsedHeight;
@@ -48,7 +49,7 @@ public class SubjectElement : MonoBehaviour
             }
         }
 
-        _expandedHeight = _collapsedHeight + descriptionText.preferredHeight / 3f;
+        _expandedHeight = _collapsedHeight + descriptionText.preferredHeight * expendHeightMultiplier;
     }
 
     public void Collapse()
