@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ed7def7d5e4be086668da322aabab0, type: 3}
   m_Name: CodeBlockStyle
   m_EditorClassIdentifier: Assembly-CSharp::SOCodeBlockStyle
-  font: {fileID: 11400000, guid: b6df61d96ce04924797c4a5029738034, type: 2}
+  font: {fileID: 11400000, guid: 952fb289d4bf0f043aaa783c9d489dcb, type: 2}
   fontColor: {r: 0.5647059, g: 0.9333334, b: 0.5647059, a: 1}
   fontSizeMultiplier: 85

@@ -69,8 +69,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 61f3db707d011544c8ef1ca6112697ec, type: 2}
+  m_sharedMaterial: {fileID: -6895365878873382960, guid: 61f3db707d011544c8ef1ca6112697ec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -204,11 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcce013ea0784619bc146cdbc3eaed79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SubjectElement
+  expandDuration: 0.2
+  expendHeightMultiplier: 0.15
+  linkFontStyle: {fileID: 11400000, guid: 9f857123b2f10cf48bb2cff1167688dc, type: 2}
   button: {fileID: 7853078615818439497}
   titleText: {fileID: 7167581635781745875}
   descriptionText: {fileID: 6594579005194404365}
-  expandDuration: 0.2
-  expendHeightMultiplier: 0.15
 --- !u!1001 &8408873793560945941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,16 +220,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1714199841475197382, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 37.85
       objectReference: {fileID: 0}
-    - target: {fileID: 1714199841475197382, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 1714199841475197382, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6371754172216705668, guid: 43fe83de22d2f7247b1c5753424e72e1, type: 3}
       propertyPath: m_Name
       value: Button

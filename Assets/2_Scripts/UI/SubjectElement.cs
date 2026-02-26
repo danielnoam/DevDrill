@@ -6,11 +6,13 @@ using PrimeTween;
 
 public class SubjectElement : MonoBehaviour
 {
+    [SerializeField] private float expandDuration = 0.2f;
+    [SerializeField] private float expendHeightMultiplier = 0.35f;
+    [SerializeField] private SOFontStyle linkFontStyle;
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private float expandDuration = 0.2f;
-    [SerializeField] private float expendHeightMultiplier = 0.35f;
+
 
     private RectTransform _rectTransform;
     private float _collapsedHeight;
@@ -38,14 +40,17 @@ public class SubjectElement : MonoBehaviour
 
             if (tag.links.Length > 0)
             {
-                string linksString = "\n\nLinks:";
+                string linksTitleString = "\n\nLinks:";
+                string linksString = string.Empty;
                 
                 foreach (var link in tag.links)
                 {
                     linksString += $"\n{link}";
                 }
                 
-                descriptionText.text += linksString;
+                
+                
+                descriptionText.text += linksTitleString + linkFontStyle.ApplyStyle(linksString);
             }
         }
 
