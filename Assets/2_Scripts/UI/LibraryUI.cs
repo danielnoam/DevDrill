@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+
 using DNExtensions.Systems.MenuSystem;
 using UnityEngine;
 using UnityEngine.UI;

@@ -248,6 +248,7 @@ MonoBehaviour:
   descriptionText: {fileID: 0}
   progressBarFill: {fileID: 3116281612257117296}
   button: {fileID: 7853078615818439497}
+  progressCompleteColor: {r: 0.5647059, g: 0.9333334, b: 0.5647059, a: 1}
 --- !u!1001 &8408873793560945941
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 1750193044392095324}
   - component: {fileID: 2079874325988435772}
   - component: {fileID: 7863741141795616349}
+  - component: {fileID: 4764874160431696322}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -343,3 +344,15 @@ MonoBehaviour:
   onSelect: 0
   selectAudioID: ButtonPressed
   selectable: {fileID: 1750193044392095324}
+--- !u!114 &4764874160431696322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371754172216705668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dadfe376dc92498d958d58dc7949c6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollRectForwarder
