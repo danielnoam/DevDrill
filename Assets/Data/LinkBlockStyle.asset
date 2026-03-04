@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3ed7def7d5e4be086668da322aabab0, type: 3}
-  m_Name: CodeBlockStyle
+  m_Name: LinkBlockStyle
   m_EditorClassIdentifier: Assembly-CSharp::SOCodeBlockStyle
   font:
-    isSet: 1
+    isSet: 0
     hideValueIfSet: 0
     value: {fileID: 11400000, guid: 952fb289d4bf0f043aaa783c9d489dcb, type: 2}
   fontColor:
@@ -23,8 +23,12 @@ MonoBehaviour:
   fontSizePercentage:
     isSet: 1
     hideValueIfSet: 0
-    value: 85
+    value: 70
+  alignment:
+    isSet: 0
+    hideValueIfSet: 0
+    value: 2
   bold: 0
   slant: 0
   strikeThrough: 0
-  underline: 0
+  underline: 1

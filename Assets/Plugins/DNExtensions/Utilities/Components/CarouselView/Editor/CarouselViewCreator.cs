@@ -27,7 +27,7 @@ namespace DNExtensions.Utilities
                 Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
 
             CarouselView carousel = root.AddComponent<CarouselView>();
-            carousel.Spacing = 10f;
+            carousel.spacing = 10f;
             
             GameObject viewportGo = CreateUIObject("Viewport", root);
             RectTransform viewportRect = viewportGo.GetComponent<RectTransform>();
@@ -88,11 +88,7 @@ namespace DNExtensions.Utilities
             rect.anchoredPosition = anchoredPos;
             rect.sizeDelta        = sizeDelta;
         }
-
-        /// <summary>
-        /// Ensures a Canvas and EventSystem exist in the scene, creating them if needed.
-        /// Matches Unity own UI element creation behavior.
-        /// </summary>
+        
         private static void EnsureCanvasExists(ref GameObject parent)
         {
             if (parent != null && parent.GetComponentInParent<Canvas>() != null)

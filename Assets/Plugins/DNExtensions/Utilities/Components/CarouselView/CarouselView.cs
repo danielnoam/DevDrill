@@ -57,13 +57,13 @@ namespace DNExtensions.Utilities
 
         [Header("Behaviour")]
         [Tooltip("Pixel gap between item slots.")]
-        [SerializeField] private float spacing;
+        public float spacing;
 
         [Tooltip("Resistance multiplier when dragging past the first or last item. 0 = immovable, 1 = no resistance.")]
         [SerializeField, Range(0f, 1f)] private float edgeResistance = 0.3f;
 
         [Tooltip("If true, navigating past the last item wraps to the first and vice versa.")]
-        [SerializeField] private bool loop;
+        public bool loop;
 
         [Tooltip("Which item to center when the carousel first starts.")]
         [SerializeField] private InitialItem initialItem = InitialItem.First;
@@ -71,10 +71,10 @@ namespace DNExtensions.Utilities
 
         [Header("Indicators")]
         [Tooltip("Color of the indicator for the currently selected item.")]
-        [SerializeField] private Color indicatorActiveColor = Color.white;
+        public Color indicatorActiveColor = Color.white;
 
         [Tooltip("Color of indicators for non-selected items.")]
-        [SerializeField] private Color indicatorInactiveColor = new Color(1f, 1f, 1f, 0.4f);
+        public Color indicatorInactiveColor = new Color(1f, 1f, 1f, 0.4f);
 
 
 
@@ -88,55 +88,7 @@ namespace DNExtensions.Utilities
         private float _offsetAtDragStart;
         private float _prevOffset;
         private float _dragVelocity;
-
-        /// <summary>The viewport that handles clipping.</summary>
-        public RectTransform Viewport
-        {
-            get => viewport;
-            set => viewport = value;
-        }
-
-        /// <summary>The content rect whose children are carousel items. Its size defines the slot size all items share.</summary>
-        public RectTransform Content
-        {
-            get => content;
-            set => content = value;
-        }
-
-        /// <summary>Parent rect for the generated indicator images.</summary>
-        public RectTransform IndicatorContainer
-        {
-            get => indicatorContainer;
-            set => indicatorContainer = value;
-        }
-
-        /// <summary>If true, navigating past the last item wraps to the first and vice versa.</summary>
-        public bool Loop
-        {
-            get => loop;
-            set => loop = value;
-        }
-
-        /// <summary>Pixel gap between item slots.</summary>
-        public float Spacing
-        {
-            get => spacing;
-            set { spacing = value; ApplyLayout(); }
-        }
-
-        /// <summary>Color of the indicator for the currently selected item.</summary>
-        public Color IndicatorActiveColor
-        {
-            get => indicatorActiveColor;
-            set { indicatorActiveColor = value; RefreshIndicatorColors(); }
-        }
-
-        /// <summary>Color of indicators for non-selected items.</summary>
-        public Color IndicatorInactiveColor
-        {
-            get => indicatorInactiveColor;
-            set { indicatorInactiveColor = value; RefreshIndicatorColors(); }
-        }
+        
 
         /// <summary>Invoked whenever the centered item changes.</summary>
         public IndexChangedEvent OnIndexChanged => onIndexChanged;
@@ -337,11 +289,7 @@ namespace DNExtensions.Utilities
         }
 
         private float SlotWidth => content.rect.width + spacing;
-
-        /// <summary>
-        /// Sets each item slot origin to index * SlotWidth.
-        /// Items anchor against Content so their offsets resolve correctly.
-        /// </summary>
+        
         private void ApplyLayout()
         {
             if (content == null) return;
@@ -357,7 +305,7 @@ namespace DNExtensions.Utilities
             }
         }
 
-        /// <summary>Shifts each item from its slot origin by the given offset.</summary>
+
         private void ApplyOffset(float offset)
         {
             if (content == null) return;
@@ -372,8 +320,7 @@ namespace DNExtensions.Utilities
                 item.anchoredPosition = pos;
             }
         }
-
-        /// <summary>Sets each indicator image to the active or inactive color based on the current index.</summary>
+        
         private void RefreshIndicatorColors()
         {
             if (indicatorContainer == null) return;
@@ -385,8 +332,7 @@ namespace DNExtensions.Utilities
                 img.color = i == _currentIndex ? indicatorActiveColor : indicatorInactiveColor;
             }
         }
-
-        /// <summary>Returns the offset required to center the item at <paramref name="index"/>.</summary>
+        
         private float GetTargetOffset(int index) => -(index * SlotWidth);
 
         private int WrapIndex(int index) => ((index % ItemCount) + ItemCount) % ItemCount;

@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SubjectElement
   expandDuration: 0.2
   expendHeightMultiplier: 0.15
-  linkFontStyle: {fileID: 11400000, guid: 9f857123b2f10cf48bb2cff1167688dc, type: 2}
+  linkFontStyle: {fileID: 11400000, guid: 8d050d0003a32c643ad681f7c8c8c09c, type: 2}
   linkCursor: {fileID: 2800000, guid: 774693f097b81834cb5ddbeef85cc110, type: 3}
   linkCursorHotspot: {x: 0, y: 0}
   button: {fileID: 7853078615818439497}
