@@ -1,15 +1,17 @@
-﻿
 using UnityEngine;
 
 namespace DNExtensions.Systems.FirstPersonController
 {
+    /// <summary>
+    /// Enables the first-person controller to push rigidbodies on collision.
+    /// </summary>
     [DisallowMultipleComponent]
+    [AddComponentMenu("")]
     public class FPCRigidBodyPush : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private bool enablePush = true;
         [SerializeField, Min(0f)] private float pushPower = 2f;
-        
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
@@ -23,6 +25,5 @@ namespace DNExtensions.Systems.FirstPersonController
             Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
             rb.linearVelocity = pushDirection * pushPower;
         }
-
     }
 }

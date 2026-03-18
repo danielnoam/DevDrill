@@ -1,10 +1,8 @@
-#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +12,7 @@ namespace DNExtensions.Utilities
     /// Editor window for browsing and editing ScriptableObjects by type.
     /// Supports multi-selection and undo/redo.
     /// </summary>
-    public class ScriptableObjectEditor : EditorWindow
+    internal class ScriptableObjectEditor : EditorWindow
     {
         private readonly List<Type> _allTypes = new List<Type>();
         private List<Type> _availableTypes = new List<Type>();
@@ -1037,4 +1035,3 @@ namespace DNExtensions.Utilities
         }
     }
 }
-#endif

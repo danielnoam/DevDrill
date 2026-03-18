@@ -1,8 +1,6 @@
-
-
-
 using System;
 using DNExtensions.Systems.Springs;
+using DNExtensions.Utilities;
 using DNExtensions.Utilities.Button;
 using DNExtensions.Utilities.SerializableSelector;
 using PrimeTween;
@@ -10,6 +8,9 @@ using UnityEngine;
 
 namespace DNExtensions.Systems.MenuSystem
 {
+    /// <summary>
+    /// Base class for screen transition animations.
+    /// </summary>
     [Serializable]
     public abstract class ScreenAnimation
     {
@@ -18,12 +19,15 @@ namespace DNExtensions.Systems.MenuSystem
         public abstract Sequence CreateSequence(Screen screen);
     }
 
+    /// <summary>
+    /// Animates screen opacity with configurable start and end alpha values.
+    /// </summary>
     [Serializable]
     [SerializableSelectorAllowOnce]
     public class FadeAnimation : ScreenAnimation
     {
         public bool startFromCurrentAlpha;
-        [Range(0f, 1f)] public float startAlpha;
+        [Range(0f, 1f), HideIf("startFromCurrentAlpha")] public float startAlpha;
         [Range(0f, 1f)] public float endAlpha = 1f;
         public Ease ease = Ease.OutCubic;
 
@@ -42,6 +46,9 @@ namespace DNExtensions.Systems.MenuSystem
         }
     }
 
+    /// <summary>
+    /// Animates screen scale with configurable start and end values.
+    /// </summary>
     [Serializable]
     [SerializableSelectorAllowOnce]
     public class ScaleAnimation : ScreenAnimation
@@ -54,25 +61,17 @@ namespace DNExtensions.Systems.MenuSystem
 
         public override Sequence CreateSequence(Screen screen)
         {
-            Vector3 from = startFromCurrentScale
-                ? screen.RectTransform.localScale
-                : startScale;
-
-            Vector3 to = endInOriginalScale
-                ? screen.TransformOriginalScale
-                : endScale;
+            Vector3 from = startFromCurrentScale ? screen.RectTransform.localScale : startScale;
+            Vector3 to = endInOriginalScale ? screen.TransformOriginalScale : endScale;
 
             return Sequence.Create()
-                .Group(Tween.Scale(
-                    screen.RectTransform,
-                    from,
-                    to,
-                    duration,
-                    ease
-                ));
+                .Group(Tween.Scale(screen.RectTransform, from, to, duration, ease));
         }
     }
 
+    /// <summary>
+    /// Animates screen position by sliding from a direction with configurable distance.
+    /// </summary>
     [Serializable]
     [SerializableSelectorAllowOnce]
     public class SlideAnimation : ScreenAnimation
@@ -108,15 +107,13 @@ namespace DNExtensions.Systems.MenuSystem
             screen.RectTransform.anchoredPosition3D = startPos;
 
             return Sequence.Create()
-                .Group(Tween.Position(
-                    screen.RectTransform,
-                    endPos,
-                    duration,
-                    ease
-                ));
+                .Group(Tween.Position(screen.RectTransform, endPos, duration, ease));
         }
     }
 
+    /// <summary>
+    /// Animates screen rotation from start to end angles.
+    /// </summary>
     [Serializable]
     [SerializableSelectorAllowOnce]
     public class RotateAnimation : ScreenAnimation
@@ -135,16 +132,13 @@ namespace DNExtensions.Systems.MenuSystem
             screen.RectTransform.localEulerAngles = startRotation;
 
             return Sequence.Create()
-                .Group(Tween.Rotation(
-                    screen.RectTransform,
-                    to,
-                    duration,
-                    ease
-                ));
+                .Group(Tween.Rotation(screen.RectTransform, to, duration, ease));
         }
-        
     }
 
+    /// <summary>
+    /// Animates multiple springy UI elements sequentially with configurable delay between elements.
+    /// </summary>
     [Serializable]
     [SerializableSelectorAllowOnce]
     public class SpringyUIAnimation : ScreenAnimation
@@ -162,8 +156,7 @@ namespace DNExtensions.Systems.MenuSystem
         public enum SpringAnimationMode
         {
             AnimateFromOffset,
-            AnimateToOffset,
-
+            AnimateToOffset
         }
 
         public override Sequence CreateSequence(Screen screen)

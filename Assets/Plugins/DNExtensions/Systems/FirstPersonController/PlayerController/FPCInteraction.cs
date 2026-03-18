@@ -1,4 +1,3 @@
-using System;
 using DNExtensions.Systems.FirstPersonController.Interactable;
 using DNExtensions.Utilities;
 using DNExtensions.Utilities.AutoGet;
@@ -8,106 +7,74 @@ using UnityEngine.InputSystem;
 
 namespace DNExtensions.Systems.FirstPersonController
 {
+    /// <summary>
+    /// Handles player interactions with interactable objects, including picking up, holding, throwing, and dropping objects.
+    /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(FpcManager))]
+    [AddComponentMenu("")]
     public class FPCInteraction : MonoBehaviour
     {
-        [Header("Interaction Settings")]
+        [Header("Interaction")]
         [SerializeField] private float interactionRadius = 3f;
         [SerializeField] private LayerMask interactionLayer = 0;
         
-        [Header("Held Object Settings")]
+        [Header("Held Object")]
+        [SerializeField] private float minTimeForThrow = 0.1f;
         [SerializeField] private float autoDropYOffset = 1f;
         [SerializeField, MinMaxRange(0,30)] private RangedFloat throwForceRange = new RangedFloat(5f, 15f);
         [SerializeField, MinMaxRange(1f,4f)] private RangedFloat throwHeldRange = new RangedFloat(1f, 4f);
         
         [Header("References")]
-        [SerializeField, AutoGetSelf] private FpcManager manager;
+        [SerializeField, AutoGetSelf, HideInInspector] private FpcManager manager;
         [SerializeField] private Transform holdPosition;
         [SerializeField] private Transform interactionPosition;
-        
-        [Header("Debug")]
-        [SerializeField] private bool drawInformation;
-        [SerializeField, ReadOnly] private PickableObject heldObject;
-        
-        private IInteractable _closestInteractable;
 
+        private PickableObject _heldObject;
+        private IInteractable _closestInteractable;
         private bool _throwInputHeld;
         private float _throwInputHoldTime;
         
         public Transform HoldPosition => holdPosition;
 
+        /// <summary>
+        /// Gets or sets the currently held pickable object. Setting to null or a different object will drop the current object.
+        /// </summary>
         public PickableObject HeldObject
         {
-            get => heldObject;
+            get => _heldObject;
             set
             {
-                if (heldObject == value) return;
+                if (_heldObject == value) return;
 
-                if (heldObject)
+                if (_heldObject)
                 {
-                    heldObject.Drop();
-                    heldObject = null;
+                    _heldObject.Drop();
+                    _heldObject = null;
                 }
                 
-                heldObject = value;
+                _heldObject = value;
             }
         }
 
         private void OnValidate()
         {
-            if (!manager) manager = GetComponent<FpcManager>();
+            AutoGetSystem.Process(this);
             if (!interactionPosition) interactionPosition = transform;
         }
-
 
         private void OnEnable()
         {
             manager.FpcInput.OnInteractAction += OnInteract;
             manager.FpcInput.OnThrowAction += OnThrow;
-            manager.FpcInput.OnDropAction += OnDrop;
         }
 
         private void OnDisable()
         {
             manager.FpcInput.OnInteractAction -= OnInteract;
             manager.FpcInput.OnThrowAction -= OnThrow;
-            manager.FpcInput.OnDropAction -= OnDrop;
         }
         
-        private void OnInteract(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-            {
-                var interactorData = new InteractorData(this);
-                _closestInteractable?.Interact(interactorData);
-            }
-        }
-        
-        private void OnThrow(InputAction.CallbackContext context)
-        {
-            if (context.started)
-            {
-                _throwInputHeld = true;
-            }
-            else if (context.canceled)
-            {
-                _throwInputHeld = false;
-                ThrowHeldObject();
-            }
-
-
-            _throwInputHoldTime = 0f;
-        }
-        
-        private void OnDrop(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-            {
-                DropHeldObject();
-            }
-        }
-
         private void Update()
         {
             UpdateHeldInputTime();
@@ -118,27 +85,65 @@ namespace DNExtensions.Systems.FirstPersonController
             CheckForInteractable();
             CheckHeldObjectHeight();
         }
+        
+        private void OnInteract(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                var interactorData = new InteractorData()
+                {
+                  FpcInteraction = this
+                };
+                _closestInteractable?.Interact(interactorData);
+            }
+        }
+        
+        private void OnThrow(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                _throwInputHeld = true;
+                _throwInputHoldTime = 0f;
+            }
+            else if (context.canceled)
+            {
+                _throwInputHeld = false;
+                
+                if (_throwInputHoldTime < minTimeForThrow)
+                {
+                    DropHeldObject();
+                }
+                else
+                {
+                    ThrowHeldObject();
+                }
+                
+                _throwInputHoldTime = 0f;
+            }
+        }
+
+
 
         private void ThrowHeldObject()
         {
-            if (!heldObject) return;
+            if (!_heldObject) return;
             
             var force = throwForceRange.Lerp(_throwInputHoldTime / throwHeldRange.maxValue);
-            heldObject.Throw(manager.FpcCamera.GetAimDirection(), force);
-            heldObject = null;
+            _heldObject.Throw(manager.FpcCamera.GetAimDirection(), force);
+            _heldObject = null;
         }
 
         private void DropHeldObject()
         {
-            heldObject?.Drop();
-            heldObject = null;
+            _heldObject?.Drop();
+            _heldObject = null;
         }
 
         private void CheckHeldObjectHeight()
         {
-            if (!heldObject) return;
+            if (!_heldObject) return;
             
-            if (heldObject.transform.position.y < (transform.position.y - autoDropYOffset))
+            if (_heldObject.transform.position.y < (transform.position.y - autoDropYOffset))
             {
                 DropHeldObject();
             }
@@ -146,7 +151,7 @@ namespace DNExtensions.Systems.FirstPersonController
 
         private void UpdateHeldInputTime()
         {
-            if (!heldObject) return;
+            if (!_heldObject) return;
             
             if (_throwInputHeld && _throwInputHoldTime < throwHeldRange.maxValue)
             {
@@ -154,7 +159,6 @@ namespace DNExtensions.Systems.FirstPersonController
             }
         }
 
-        
         private void CheckForInteractable()
         {
             var colliders = Physics.OverlapSphere(interactionPosition.position, interactionRadius, interactionLayer);
@@ -180,19 +184,14 @@ namespace DNExtensions.Systems.FirstPersonController
             if (closestInteractable != _closestInteractable)
             {
                 _closestInteractable?.HideInteractionTip();
-                _closestInteractable?.ShowInteractionTip();
                 _closestInteractable = closestInteractable;
+                _closestInteractable?.ShowInteractionTip();
             }
         }
-        
 
-
-        private void OnDrawGizmos()
-        {
-            if (!drawInformation) return;
-            
 #if UNITY_EDITOR
-
+        private void OnDrawGizmosSelected()
+        {
             if (interactionPosition)
             {
                 Gizmos.color = Color.yellow;
@@ -208,10 +207,7 @@ namespace DNExtensions.Systems.FirstPersonController
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position.RemoveY(autoDropYOffset), 0.1f);
             Handles.Label(transform.position.RemoveY(autoDropYOffset), "Auto drop distance");
-            
-#endif
         }
-
-
+#endif
     }
 }
