@@ -4,25 +4,31 @@ using UnityEngine;
 public static class ProgressManager
 {
     private const string Prefix = "progress_";
+    private const char Separator = ',';
 
     public static HashSet<string> GetAnsweredIds(string courseId)
     {
         var raw = PlayerPrefs.GetString(Prefix + courseId, "");
         var result = new HashSet<string>();
-        
+
         if (string.IsNullOrEmpty(raw)) return result;
-        
-        foreach (var id in raw.Split(','))
-            result.Add(id);
-        
+
+        foreach (var id in raw.Split(Separator))
+        {
+            var trimmed = id.Trim();
+            if (trimmed.Length > 0)
+                result.Add(trimmed);
+        }
+
         return result;
     }
 
     public static void SaveAnswered(string courseId, string questionId)
     {
         var answered = GetAnsweredIds(courseId);
-        answered.Add(questionId);
-        PlayerPrefs.SetString(Prefix + courseId, string.Join(",", answered));
+        if (!answered.Add(questionId)) return;
+        
+        PlayerPrefs.SetString(Prefix + courseId, string.Join(Separator.ToString(), answered));
         PlayerPrefs.Save();
     }
 
@@ -39,8 +45,7 @@ public static class ProgressManager
 
     public static void ClearAllProgress()
     {
-        var courses = DataLoader.LoadCourses();
-        foreach (var course in courses)
+        foreach (var course in DataLoader.LoadCourses())
             PlayerPrefs.DeleteKey(Prefix + course.id);
         PlayerPrefs.Save();
     }

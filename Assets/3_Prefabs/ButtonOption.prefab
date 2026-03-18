@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3710613764523027844}
   - component: {fileID: 5079898071224967598}
   - component: {fileID: 8721116607525978261}
-  - component: {fileID: 2811865215967160798}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -80,43 +79,6 @@ MonoBehaviour:
   m_Height: 0.45
   m_Rounding: 0
   m_Corners: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2811865215967160798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1733727867143740604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d0aaa51ffd55a47a7da0b02871f89f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.Systems.MenuSystem.SelectableGraphicAnimator
-  selectable: {fileID: 4505560767643477321}
-  resetOnDisable: 1
-  positionEffectType: 0
-  positionOffset: {x: 0, y: 10, z: 0}
-  positionDuration: 0.15
-  positionEase: 31
-  shakeOnDeselect: 0
-  shakeStrength: {x: 3, y: 3, z: 0}
-  shakeFrequency: 10
-  shakeDuration: 0.5
-  shakeEase: 0
-  animateRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 15}
-  rotationDuration: 0.15
-  rotationEase: 31
-  animateScale: 1
-  scaleMultiplier: 0.95
-  scaleDuration: 0.15
-  scaleEase: 31
-  animateColor: 0
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
-  colorDuration: 0.15
-  colorEase: 7
-  graphic: {fileID: 8721116607525978261}
-  rectTransform: {fileID: 3710613764523027844}
 --- !u!1 &5144454043772732772
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +229,7 @@ GameObject:
   - component: {fileID: 4172845652170452662}
   - component: {fileID: 294404717946255307}
   m_Layer: 5
-  m_Name: ToggleOption
+  m_Name: ButtonOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,7 +280,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

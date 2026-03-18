@@ -5,11 +5,16 @@ using Utkaka.ScaleNineSlicer.UI;
 
 public class CourseElement : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private bool showDifficulty = true;
+    [SerializeField] private Color progressCompleteColor = Color.lightGreen;
+    
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private SlicedImage progressBarFill;
+    [SerializeField] private SOFontStyle difictutyStyle;
     [SerializeField] private Button button;
-    [SerializeField] private Color progressCompleteColor = Color.lightGreen;
 
     private Color _progressBaseColor;
     
@@ -21,7 +26,24 @@ public class CourseElement : MonoBehaviour
     {
         button?.onClick.AddListener(() => quizManager.StartQuiz(course));
         if (titleText) titleText.text = course.name;
-        if (descriptionText) descriptionText.text = course.description;
+        if (descriptionText)
+        {
+            var text = course.description;
+            var difificulty = string.Empty;
+            
+            if (course.difficulties.Length > 0 && showDifficulty)
+            {
+                difificulty += $"\n\nDifficulties:";
+                
+                foreach (var difficulty in course.difficulties)
+                {
+                    difificulty += $"\n{difficulty}";
+                }
+                
+                
+            }
+            descriptionText.text = text + difictutyStyle.ApplyStyle(difificulty);
+        }
         
         UpdateProgress(answered, total);
     }

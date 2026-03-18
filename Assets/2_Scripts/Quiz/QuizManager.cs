@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class QuizManager : MonoBehaviour
 {
-    public static QuizManager Instance { get; private set; }
-    
     public static event Action OnQuizStarted;
     public static event Action<QuestionData, int, int> OnQuestionLoaded;
     public static event Action<bool, string> OnAnswerSubmitted;
@@ -16,16 +14,7 @@ public class QuizManager : MonoBehaviour
     public static event Action OnQuizQuit;
 
     private Quiz _activeQuiz;
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
+    
 
     public void StartQuiz(string[] tags = null, string[] excludeTags = null)
     {

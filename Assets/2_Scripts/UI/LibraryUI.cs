@@ -1,4 +1,3 @@
-
 using DNExtensions.Systems.MenuSystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,20 +7,38 @@ using Screen = DNExtensions.Systems.MenuSystem.Screen;
 
 public class LibraryUI : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private float upButtonActiveRange = 0.8f;
+    [SerializeField] private float scrollDuration = 0.3f;
+    
+    [Header("References")]
     [SerializeField] private Screen mainMenuScreen;
     [SerializeField] private Button backButton;
+    [SerializeField] private Button upButton;
     [SerializeField] private Transform subjectsContainer;
     [SerializeField] private SubjectElement subjectElementPrefab;
     [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private float scrollDuration = 0.3f;
     [SerializeField, AutoGetScene] private MenuManager menuManager;
 
     private SubjectElement _expandedElement;
 
     private void Awake()
     {
-        backButton.onClick.AddListener(() => menuManager.ShowScreen(mainMenuScreen));
+        backButton?.onClick.AddListener(() => menuManager.ShowScreen(mainMenuScreen));
+        upButton?.onClick.AddListener(ScrollToTop);
         SpawnSubjectElements();
+    }
+
+    private void Update()
+    {
+        if (!upButton.gameObject.activeInHierarchy && scrollRect.verticalNormalizedPosition <= upButtonActiveRange)
+        {
+            upButton.gameObject.SetActive(true);
+        } 
+        else if (upButton.gameObject.activeInHierarchy && scrollRect.verticalNormalizedPosition > upButtonActiveRange)
+        {
+            upButton.gameObject.SetActive(false);
+        }
     }
 
     private void SpawnSubjectElements()
@@ -46,6 +63,11 @@ public class LibraryUI : MonoBehaviour
         _expandedElement = expanded;
 
         Tween.Delay(expanded.ExpandDuration, () => ScrollToCenter(expanded));
+    }
+
+    private void ScrollToTop()
+    {
+        Tween.Custom(this, scrollRect.verticalNormalizedPosition, 1f, scrollDuration, (target, value) => target.scrollRect.verticalNormalizedPosition = value);
     }
 
     private void ScrollToCenter(SubjectElement element)

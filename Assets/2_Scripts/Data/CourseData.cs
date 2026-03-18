@@ -8,6 +8,7 @@ public class CourseData
     public string description;
     public string[] tags;
     public string[] excludeTags;
+    public string[] difficulties;
     public bool matchAll;
 
 }

@@ -1,0 +1,212 @@
+{
+  "questions": [
+    {
+      "id": "unity-profiling-what",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "What is the Unity Profiler used for?",
+      "options": [
+        "Writing unit tests",
+        "Measuring CPU, GPU, memory, and rendering performance in real time",
+        "Compiling scripts faster",
+        "Debugging compile errors"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The Profiler (Window > Analysis > Profiler) shows per-frame breakdowns of CPU time, memory allocations, rendering, physics, and more. It's the primary tool for identifying performance bottlenecks."
+    },
+    {
+      "id": "unity-profiling-device",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "Why should you profile on the target device rather than only in the editor?",
+      "options": [
+        "The editor doesn't have a profiler",
+        "The editor adds overhead from its own UI, inspector updates, and uses different code paths than a build",
+        "Device profiling is faster to set up",
+        "The editor cannot measure GPU time"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Editor overhead (scene view rendering, inspector serialization, no IL2CPP) makes editor profiles misleading. Always validate on target hardware for accurate CPU, GPU, and memory numbers.",
+      "hint": "The editor adds Scene view rendering, inspector serialization, and uses Mono instead of IL2CPP."
+    },
+    {
+      "id": "unity-profiling-deep-profile",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "What does Deep Profile mode do in the Unity Profiler?",
+      "options": [
+        "It profiles GPU draw calls",
+        "It instruments every method call so you can see the full call stack, at the cost of significant overhead",
+        "It enables memory leak detection",
+        "It profiles only physics methods"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Deep Profile injects profiling hooks into every C# method, giving full call hierarchy visibility. The overhead is substantial — frame times can increase 5-10x. Use it to narrow down problems, then switch to manual Profiler.BeginSample markers for targeted measurement.",
+      "hint": "It hooks into every method call — useful but can slow your game 5-10x."
+    },
+    {
+      "id": "unity-profiling-beginsample",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "What do `Profiler.BeginSample` and `Profiler.EndSample` do?",
+      "options": [
+        "They pause and resume the game",
+        "They mark a named section of code so it appears as a labelled block in the Profiler",
+        "They allocate memory for profiling",
+        "They enable Deep Profile for that section only"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "BeginSample/EndSample wrap a section of code with a custom label that appears in the Profiler's CPU timeline. They have near-zero overhead in non-development builds and are stripped entirely from release builds."
+    },
+    {
+      "id": "unity-profiling-frame-debugger",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "What does the Frame Debugger show?",
+      "options": [
+        "A list of all GameObjects in the scene",
+        "A step-by-step breakdown of every draw call the GPU processes in a single frame",
+        "Memory allocations per frame",
+        "A list of all scripts running in the frame"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The Frame Debugger (Window > Analysis > Frame Debugger) lets you step through each draw call in order, showing what is being rendered, with which shader, and why batches were broken. It's essential for optimising rendering."
+    },
+    {
+      "id": "unity-profiling-batching-broken",
+      "type": "MultiSelect",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "Which of the following can break dynamic batching in Unity?",
+      "options": [
+        "Objects using different materials",
+        "Objects with too many vertices",
+        "Objects at different positions",
+        "Objects with different mesh vertex formats"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Dynamic batching requires objects to share the same material, have fewer than 300 vertices (with certain attribute limits), and use the same vertex format. Different positions alone don't break batching — that's the whole point of it.",
+      "hint": "Same material, same vertex format, vertex count under 300."
+    },
+    {
+      "id": "unity-profiling-gc-alloc-column",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "In the Profiler's CPU module, what does the 'GC Alloc' column tell you?",
+      "options": [
+        "Total memory used by the application",
+        "How much managed heap memory was allocated by that method in that frame",
+        "How long the garbage collector ran",
+        "The number of objects destroyed that frame"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "GC Alloc shows bytes allocated on the managed heap by a method in a single frame. Any non-zero value in Update-frequency code is a red flag — it means garbage is being generated every frame, which will eventually trigger a GC spike.",
+      "hint": "Non-zero GC Alloc in Update means garbage is created every frame."
+    },
+    {
+      "id": "unity-profiling-memory-profiler",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "What does the Memory Profiler package provide that the built-in Profiler does not?",
+      "options": [
+        "Real-time CPU timeline",
+        "Detailed memory snapshots showing every object, its size, and what references it",
+        "Script compilation times",
+        "Audio profiling"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The Memory Profiler package lets you capture and compare snapshots of all native and managed memory. You can see individual object sizes, reference chains, and identify what is keeping objects alive — critical for finding memory leaks."
+    },
+    {
+      "id": "unity-profiling-setpass",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "What does 'SetPass calls' mean in Unity's rendering statistics?",
+      "options": [
+        "The number of GameObjects in the scene",
+        "The number of times the GPU switches shader passes, which is expensive",
+        "The number of triangles rendered",
+        "The number of cameras rendering"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A SetPass call occurs when the GPU needs to switch to a different shader or material state. Each switch has overhead. Reducing material variety and using GPU instancing or SRP Batcher helps lower SetPass calls.",
+      "hint": "Each material/shader switch costs GPU time. Fewer unique materials means fewer switches."
+    },
+    {
+      "id": "unity-profiling-il2cpp-vs-mono",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "unity",
+        "profiling"
+      ],
+      "question": "How does IL2CPP affect performance compared to Mono?",
+      "options": [
+        "IL2CPP is always slower because it adds a translation step",
+        "IL2CPP converts C# IL to C++ which is then compiled to native code, generally producing faster runtime performance",
+        "There is no performance difference",
+        "IL2CPP only affects build size, not runtime speed"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "IL2CPP translates IL to C++ source code, which is then compiled with the platform's native C++ compiler. This typically produces faster code than Mono's JIT, especially on platforms that don't allow JIT (iOS). It also enables better stripping and smaller builds.",
+      "hint": "IL2CPP translates C# to C++ at build time. Mono compiles C# to native code at runtime."
+    }
+  ]
+}

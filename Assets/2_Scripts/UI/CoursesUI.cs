@@ -24,13 +24,11 @@ public class CoursesUI : MonoBehaviour
         SpawnCourseButtons();
         QuizManager.OnQuizQuit += RefreshProgress;
     }
-    
 
     private void OnDestroy()
     {
         QuizManager.OnQuizQuit -= RefreshProgress;
     }
-    
     
     private void RefreshProgress()
     {
@@ -51,7 +49,7 @@ public class CoursesUI : MonoBehaviour
         {
             var courseButton = Instantiate(courseElementPrefab, coursesContainer);
             var answered = ProgressManager.GetAnsweredCount(course.id);
-            var total = DataLoader.LoadQuestionsForCourse(course).Count;
+            var total = DataLoader.GetCourseQuestionCount(course.id);
             courseButton.Setup(course, answered, total, quizManager);
             _courseButtons.Add((courseButton, course, total));
         }

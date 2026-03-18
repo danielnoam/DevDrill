@@ -3,101 +3,307 @@
     {
       "id": "csharp",
       "label": "C#",
-      "summary": "C# is the primary language used in Unity development. It is a statically typed, object-oriented language running on the .NET runtime.",
-      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/"]
+      "summary": "C# is a statically typed, object-oriented language on the .NET runtime. It is the primary scripting language for Unity.\n\nKey features include generics, LINQ, async/await, pattern matching, and nullable reference types.",
+      "links": [
+        {
+          "label": "C# Documentation",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/"
+        },
+        {
+          "label": "Tour of C#",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        }
+      ]
     },
     {
       "id": "unity",
       "label": "Unity",
-      "summary": "Unity is a cross-platform game engine. Scripts inherit from MonoBehaviour and interact with the engine through a defined lifecycle.",
-      "links": ["https://docs.unity3d.com/Manual/index.html"]
+      "summary": "Unity is a cross-platform game engine. Scripts inherit from MonoBehaviour and interact with the engine through a defined lifecycle.\n\nCore concepts include GameObjects, Components, Prefabs, Scenes, and the Inspector.",
+      "links": [
+        {
+          "label": "Unity Manual",
+          "url": "https://docs.unity3d.com/Manual/index.html"
+        },
+        {
+          "label": "Script Reference",
+          "url": "https://docs.unity3d.com/ScriptReference/"
+        }
+      ]
     },
     {
       "id": "lifecycle",
       "label": "Unity Lifecycle",
-      "summary": "Unity calls methods on MonoBehaviours in a defined order: Awake → OnEnable → Start → FixedUpdate → Update → LateUpdate → OnDisable → OnDestroy.",
-      "links": ["https://docs.unity3d.com/Manual/ExecutionOrder.html"]
+      "summary": "Unity calls methods on MonoBehaviours in a defined order:\nAwake → OnEnable → Start → FixedUpdate → Update → LateUpdate → OnDisable → OnDestroy.\n\nAwake runs even on disabled components. Start is deferred until the component is first enabled. FixedUpdate runs on a fixed time step independent of frame rate.",
+      "links": [
+        {
+          "label": "Execution Order",
+          "url": "https://docs.unity3d.com/Manual/ExecutionOrder.html"
+        }
+      ]
     },
     {
       "id": "basics",
       "label": "Basics",
-      "summary": "Fundamental patterns and practices in Unity or C# that every developer should know before moving to advanced topics.",
-      "links": []
+      "summary": "Fundamental patterns and practices every developer should know.\n\nIncludes Destroy vs DestroyImmediate, GetComponent, DontDestroyOnLoad, null checks on destroyed objects (Unity overrides ==), and why to avoid FindObjectOfType in Update.",
+      "links": [
+        {
+          "label": "Object.Destroy",
+          "url": "https://docs.unity3d.com/ScriptReference/Object.Destroy.html"
+        },
+        {
+          "label": "DontDestroyOnLoad",
+          "url": "https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html"
+        }
+      ]
     },
     {
       "id": "oop",
       "label": "Object-Oriented Programming",
-      "summary": "OOP organises code around objects with data and behaviour. Core pillars are encapsulation, inheritance, polymorphism, and abstraction.",
-      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/oop"]
+      "summary": "OOP organises code around objects with data and behaviour. The four pillars are encapsulation, inheritance, polymorphism, and abstraction.\n\nC# adds access modifiers (public, private, protected, internal), virtual/override/sealed for polymorphism, and explicit interface implementation for resolving conflicts.",
+      "links": [
+        {
+          "label": "OOP Tutorial",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/oop"
+        },
+        {
+          "label": "OOP Concepts",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/"
+        }
+      ]
     },
     {
       "id": "inheritance",
       "label": "Inheritance",
-      "summary": "Inheritance lets a class derive from another, reusing and extending its behaviour. C# supports single class inheritance but multiple interface implementation.",
-      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance"]
+      "summary": "Inheritance lets a class derive from another, reusing and extending its behaviour. C# supports single class inheritance but multiple interface implementation.\n\nUse virtual/override for polymorphic dispatch, the new keyword for method hiding, sealed to prevent further overrides, and base to call parent members.",
+      "links": [
+        {
+          "label": "Inheritance Guide",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance"
+        },
+        {
+          "label": "Abstract and Sealed",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/abstract-and-sealed-classes-and-class-members"
+        }
+      ]
     },
     {
       "id": "collections",
       "label": "Collections",
-      "summary": "C# collections (List, Dictionary, HashSet, Queue, etc.) are in System.Collections.Generic. Choosing the right collection for access patterns matters for performance.",
-      "links": ["https://learn.microsoft.com/en-us/dotnet/standard/collections/"]
+      "summary": "C# collections live in System.Collections.Generic.\n\nList<T> is a dynamic array with O(n) Contains. Dictionary<TKey,TValue> is a hash map with O(1) lookup. HashSet<T> is a unique set with O(1) Contains. Queue<T> and Stack<T> handle FIFO and LIFO.\n\nUse TryGetValue to avoid double lookups in dictionaries.",
+      "links": [
+        {
+          "label": "Collections Overview",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/collections/"
+        },
+        {
+          "label": "Generic Collections API",
+          "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic"
+        }
+      ]
     },
     {
       "id": "scriptableobjects",
       "label": "ScriptableObjects",
-      "summary": "ScriptableObjects are Unity assets that store data independently of any scene. They are ideal for shared configuration, events, and decoupling systems.",
-      "links": ["https://docs.unity3d.com/Manual/class-ScriptableObject.html"]
+      "summary": "ScriptableObjects are Unity assets that store data independently of scenes. They are shared by reference, not copied like [Serializable] classes.\n\nChanges in Play Mode persist to disk — use Instantiate() for runtime copies. Created via [CreateAssetMenu].\n\nUseful for shared config, event systems, and decoupling.",
+      "links": [
+        {
+          "label": "ScriptableObject Manual",
+          "url": "https://docs.unity3d.com/Manual/class-ScriptableObject.html"
+        },
+        {
+          "label": "Architecture with SOs",
+          "url": "https://unity.com/how-to/architect-game-code-scriptable-objects"
+        },
+        {
+          "label": "Unity Learn: Intro to SOs",
+          "url": "https://learn.unity.com/tutorial/introduction-to-scriptableobjects"
+        }
+      ]
     },
     {
       "id": "coroutines",
       "label": "Coroutines",
-      "summary": "Coroutines are Unity's built-in way to spread work across multiple frames using yield. They run on the main thread and are not true multithreading.",
-      "links": ["https://docs.unity3d.com/Manual/Coroutines.html"]
+      "summary": "Coroutines spread work across frames using yield return. They run on the main thread, not multithreaded.\n\nyield return null waits one frame. WaitForSeconds respects timeScale. Disabling the GameObject stops all its coroutines permanently.\n\nCache WaitForSeconds to avoid per-frame allocations. Use StartCoroutine to nest coroutines.",
+      "links": [
+        {
+          "label": "Coroutines Manual",
+          "url": "https://docs.unity3d.com/Manual/Coroutines.html"
+        },
+        {
+          "label": "StartCoroutine API",
+          "url": "https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html"
+        }
+      ]
     },
     {
       "id": "async",
       "label": "Async / Await",
-      "summary": "C# async/await enables asynchronous programming using Tasks. In Unity, UniTask is preferred over Task for performance and integration with the main thread.",
+      "summary": "C# async/await enables asynchronous programming using Tasks. async allows a method to use await, which suspends execution without blocking the thread.\n\nUnlike coroutines, async methods can return values (Task<T>), propagate exceptions via try/catch, and work outside MonoBehaviour.\n\nIn Unity, UniTask is preferred for lower allocation overhead.",
       "links": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://github.com/Cysharp/UniTask"
+        {
+          "label": "Async Programming",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/"
+        },
+        {
+          "label": "Task-based Pattern",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/task-asynchronous-programming-model"
+        },
+        {
+          "label": "UniTask (GitHub)",
+          "url": "https://github.com/Cysharp/UniTask"
+        }
       ]
     },
     {
       "id": "addressables",
       "label": "Addressables",
-      "summary": "Unity Addressables is an asset management system that loads assets by address (string or AssetReference) asynchronously. It replaces Resources.Load for scalable projects.",
-      "links": ["https://docs.unity3d.com/Packages/com.unity.addressables@latest"]
+      "summary": "Unity Addressables loads assets by address asynchronously via AsyncOperationHandle. It uses reference counting — every LoadAssetAsync needs a matching Release or the asset leaks.\n\nAssets are organised into Groups (controlling bundling) and can be tagged with Labels for batch loading.\n\nProfiles switch between local/remote load paths. Remote catalogs enable hot-updating assets without app store submissions.",
+      "links": [
+        {
+          "label": "Addressables Manual",
+          "url": "https://docs.unity3d.com/Packages/com.unity.addressables@2.7/manual/index.html"
+        },
+        {
+          "label": "Content Management Guide",
+          "url": "https://unity.com/how-to/simplify-your-content-management-addressables"
+        },
+        {
+          "label": "Unity Learn: Addressables",
+          "url": "https://learn.unity.com/course/get-started-with-addressables"
+        }
+      ]
     },
     {
       "id": "events",
       "label": "Events & Delegates",
-      "summary": "Delegates are type-safe function pointers. Events wrap delegates with subscribe/unsubscribe semantics. Action and Func are built-in generic delegate types.",
-      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/events/"]
+      "summary": "Delegates are type-safe function references. Action (void return) and Func (with return value) are built-in generic delegates.\n\nEvents wrap delegates with += and -= semantics. Delegates are multicast — subscribing twice calls the handler twice.\n\nAlways unsubscribe in OnDisable/OnDestroy to prevent memory leaks and null reference calls on destroyed objects.",
+      "links": [
+        {
+          "label": "Events Guide",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/events/"
+        },
+        {
+          "label": "Delegates Guide",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/"
+        }
+      ]
     },
     {
       "id": "linq",
       "label": "LINQ",
-      "summary": "LINQ (Language Integrated Query) provides a fluent API for filtering, transforming, and aggregating collections. Avoid it in hot paths due to allocation overhead.",
-      "links": ["https://learn.microsoft.com/en-us/dotnet/csharp/linq/"]
+      "summary": "LINQ provides a fluent API for filtering (Where), transforming (Select), and aggregating (Sum, Count) collections.\n\nIt uses deferred execution — queries run only when enumerated (foreach, ToList). Each chained method allocates an iterator on the heap.\n\nAvoid LINQ in Update or other hot paths. Use manual loops for performance-critical code.",
+      "links": [
+        {
+          "label": "LINQ Overview",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/"
+        },
+        {
+          "label": "Getting Started with LINQ",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/getting-started-with-linq"
+        }
+      ]
     },
     {
       "id": "memory",
       "label": "Memory & Performance",
-      "summary": "C# uses a garbage collector. Frequent allocations on the heap cause GC spikes. Techniques like object pooling, structs, and Span<T> reduce GC pressure.",
-      "links": ["https://docs.unity3d.com/Manual/performance-garbage-collector.html"]
+      "summary": "The .NET GC uses three generations — Gen 0 (short-lived, collected often), Gen 1, and Gen 2 (long-lived, collected rarely).\n\nHeap allocations come from new objects, boxing, closures, and LINQ iterators. Reduce GC pressure with object pooling, structs, caching, Span, and stackalloc.\n\nImplement IDisposable for deterministic cleanup of unmanaged resources. Avoid calling GC.Collect() manually except during loading screens.",
+      "links": [
+        {
+          "label": "Unity GC Guide",
+          "url": "https://docs.unity3d.com/Manual/performance-garbage-collector.html"
+        },
+        {
+          "label": ".NET GC Documentation",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/"
+        },
+        {
+          "label": "Span API",
+          "url": "https://learn.microsoft.com/en-us/dotnet/api/system.span-1"
+        }
+      ]
     },
     {
       "id": "physics",
       "label": "Physics",
-      "summary": "Unity physics runs in FixedUpdate. Rigidbody controls physical simulation. Use Physics.Raycast and OverlapSphere for spatial queries.",
-      "links": ["https://docs.unity3d.com/Manual/PhysicsSection.html"]
+      "summary": "Unity's physics engine runs in FixedUpdate on a fixed time step. Rigidbody controls simulation — apply forces and velocity in FixedUpdate, read input in Update.\n\nisKinematic removes an object from physics simulation while keeping collision/trigger callbacks. Physics.Raycast returns bool with hit data via out RaycastHit.\n\nUse layer masks to filter what rays hit.",
+      "links": [
+        {
+          "label": "Physics Manual",
+          "url": "https://docs.unity3d.com/Manual/PhysicsSection.html"
+        },
+        {
+          "label": "Physics.Raycast API",
+          "url": "https://docs.unity3d.com/ScriptReference/Physics.Raycast.html"
+        }
+      ]
     },
     {
       "id": "patterns",
       "label": "Design Patterns",
-      "summary": "Design patterns are reusable solutions to common problems. Common ones in Unity include Singleton, Observer, Command, Object Pool, and Service Locator.",
-      "links": ["https://gameprogrammingpatterns.com/"]
+      "summary": "Design patterns are reusable solutions to common problems in game development.\n\nCreational: Factory centralises object creation. Singleton ensures one global instance. Prototype clones existing objects. Object Pool recycles instances to avoid GC.\n\nBehavioural: Command wraps actions as objects for undo/replay. State replaces complex switch chains with state objects. Observer decouples publishers from subscribers. Event Queue spreads event processing over time.\n\nStructural: Component breaks behaviour into reusable pieces (Unity's core architecture). Decorator adds behaviour at runtime without modifying the class. Facade simplifies access to complex subsystems. Flyweight shares data across many instances. Service Locator provides swappable global access to services.",
+      "links": [
+        {
+          "label": "Game Programming Patterns",
+          "url": "https://gameprogrammingpatterns.com/"
+        },
+        {
+          "label": "Refactoring Guru",
+          "url": "https://refactoring.guru/design-patterns"
+        },
+        {
+          "label": "Unity Patterns Guide",
+          "url": "https://resources.unity.com/games/level-up-your-code-with-game-programming-patterns"
+        }
+      ]
+    },
+    {
+      "id": "solid",
+      "label": "SOLID Principles",
+      "summary": "Five OOP design principles by Robert C. Martin.\n\nSRP: one class, one reason to change.\nOCP: extend behaviour without modifying existing code.\nLSP: subtypes must be substitutable for their base type.\nISP: prefer small focused interfaces over large ones.\nDIP: depend on abstractions, not concrete implementations.",
+      "links": [
+        {
+          "label": "SOLID in C# (Microsoft)",
+          "url": "https://learn.microsoft.com/en-us/archive/msdn-magazine/2014/may/csharp-best-practices-dangers-of-violating-solid-principles-in-csharp"
+        },
+        {
+          "label": "SOLID Explained (freeCodeCamp)",
+          "url": "https://www.freecodecamp.org/news/what-are-the-solid-principles-in-csharp/"
+        }
+      ]
+    },
+    {
+      "id": "exceptions",
+      "label": "Exception Handling",
+      "summary": "C# uses try/catch/finally for structured error handling. finally always runs regardless of exceptions.\n\nCustom exceptions inherit from System.Exception. The when keyword filters catch blocks by condition.\n\nThrowing is expensive (captures full stack trace) — use exceptions for exceptional conditions, not normal control flow. The using statement ensures Dispose is called via try/finally.",
+      "links": [
+        {
+          "label": "Exceptions Guide",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/"
+        },
+        {
+          "label": "Exception Statements",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements"
+        }
+      ]
+    },
+    {
+      "id": "profiling",
+      "label": "Profiling & Debugging",
+      "summary": "The Unity Profiler shows per-frame CPU, GPU, memory, and rendering breakdowns. The GC Alloc column flags heap allocations in hot paths.\n\nDeep Profile instruments every method (5-10x overhead). Use Profiler.BeginSample/EndSample for targeted measurement.\n\nThe Frame Debugger steps through draw calls to diagnose batching and rendering issues. The Memory Profiler package captures detailed snapshots with reference chains.\n\nAlways profile on the target device — editor overhead skews results.",
+      "links": [
+        {
+          "label": "Unity Profiler",
+          "url": "https://docs.unity3d.com/Manual/Profiler.html"
+        },
+        {
+          "label": "Frame Debugger",
+          "url": "https://docs.unity3d.com/Manual/FrameDebugger.html"
+        },
+        {
+          "label": "Memory Profiler Package",
+          "url": "https://docs.unity3d.com/Packages/com.unity.memoryprofiler@latest"
+        }
+      ]
     }
   ]
 }

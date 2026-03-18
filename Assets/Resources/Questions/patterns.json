@@ -1,0 +1,152 @@
+{
+  "questions": [
+    {
+      "id": "patterns-command-what",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns"],
+      "question": "What does the Command pattern encapsulate?",
+      "options": ["A reference to a singleton manager", "A request or action as an object that can be stored, passed, and executed later", "A way to create objects without specifying their class", "A method for iterating over collections"],
+      "correct": [1],
+      "explanation": "The Command pattern wraps an action (with its parameters) in an object. This lets you queue commands, undo them, replay them, or rebind inputs — because the invoker doesn't need to know what the command actually does.",
+      "hint": "Think about undo/redo — how would you store an action to reverse it later?"
+    },
+    {
+      "id": "patterns-command-undo",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns"],
+      "question": "How does the Command pattern enable an undo system?",
+      "options": ["By storing a reference to the previous scene", "Each command object has an Execute and an Undo method that reverses the action", "By saving the entire game state every frame", "By using Time.timeScale to rewind"],
+      "correct": [1],
+      "explanation": "Each command knows how to do and undo itself. You push executed commands onto a stack. To undo, pop the last command and call its Undo method. To redo, call Execute again.",
+      "hint": "Each command needs to know both what it does and how to reverse it."
+    },
+    {
+      "id": "patterns-state-what",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["csharp", "patterns"],
+      "question": "What problem does the State pattern solve?",
+      "options": ["Managing object pooling", "Replacing complex if/switch chains by delegating behaviour to state objects", "Sorting collections efficiently", "Sharing data between scenes"],
+      "correct": [1],
+      "explanation": "Instead of a growing switch statement checking which state you're in, each state is its own object with its own behaviour. The main object delegates to the current state object, and switching states means swapping which object it delegates to."
+    },
+    {
+      "id": "patterns-state-fsm",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns", "unity"],
+      "question": "In a finite state machine (FSM), what determines when a transition occurs?",
+      "options": ["The game loop forces transitions every frame", "Conditions defined in each state trigger transitions to other states", "States transition in a fixed order that never changes", "The garbage collector triggers transitions"],
+      "correct": [1],
+      "explanation": "Each state defines its own transition logic — for example, an enemy in Patrol state transitions to Chase when the player enters detection range. The conditions are checked within the state itself.",
+      "hint": "Think about enemy AI: what makes a patrolling enemy start chasing?"
+    },
+    {
+      "id": "patterns-factory-what",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["csharp", "patterns"],
+      "question": "What does the Factory pattern do?",
+      "options": ["Destroys objects when they are no longer needed", "Centralises object creation so the caller doesn't need to know the concrete class", "Prevents more than one instance from being created", "Serialises objects to disk"],
+      "correct": [1],
+      "explanation": "A Factory method or class handles the creation of objects. The caller asks for an object through an interface without knowing which concrete class is instantiated. This makes it easy to add new types without changing calling code."
+    },
+    {
+      "id": "patterns-factory-vs-pool",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns", "memory"],
+      "question": "How can the Factory pattern be combined with Object Pool?",
+      "options": ["The factory always creates new instances and the pool destroys them", "The factory returns recycled objects from the pool instead of always instantiating new ones", "Object Pool replaces Factory entirely", "They cannot be combined"],
+      "correct": [1],
+      "explanation": "The factory becomes a recycling plant — callers still ask it for objects, but internally it checks the pool first. If a deactivated object is available, it returns that instead of instantiating a new one."
+    },
+    {
+      "id": "patterns-flyweight-what",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns", "memory"],
+      "question": "What does the Flyweight pattern achieve?",
+      "options": ["It makes objects move faster", "It reduces memory usage by sharing common data across many instances", "It creates lightweight threads for each object", "It compresses object data on disk"],
+      "correct": [1],
+      "explanation": "Flyweight separates shared (intrinsic) data from per-instance (extrinsic) data. A thousand soldiers can share one mesh, texture, and animation set — each soldier only stores its own position and health. Unity's sharedMaterial and sharedMesh are implementations of this pattern.",
+      "hint": "In a strategy game with 1000 identical soldiers, what data is the same for all of them?"
+    },
+    {
+      "id": "patterns-flyweight-unity",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns", "unity"],
+      "question": "Which Unity feature is an implementation of the Flyweight pattern?",
+      "options": ["DontDestroyOnLoad", "ScriptableObjects used as shared data containers", "Coroutines", "Physics.Raycast"],
+      "correct": [1],
+      "explanation": "When multiple objects reference the same ScriptableObject for shared configuration data, that's Flyweight — the shared data lives in one asset, and each instance only holds its own unique state. Unity's sharedMaterial works the same way."
+    },
+    {
+      "id": "patterns-event-queue",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns", "events"],
+      "question": "What problem does the Event Queue pattern solve compared to the Observer pattern?",
+      "options": ["Event Queue removes the need for events entirely", "Event Queue spreads event processing over multiple frames to avoid freezing when many events fire at once", "Event Queue makes events type-safe", "Event Queue prevents memory leaks from unsubscribed listeners"],
+      "correct": [1],
+      "explanation": "With Observer, all subscribers execute immediately when an event fires. If 100 enemies die at once, 100 death handlers run in the same frame. Event Queue buffers events and processes them over time, preventing frame spikes.",
+      "hint": "What happens if the Observer triggers 50 methods in a single frame?"
+    },
+    {
+      "id": "patterns-service-locator",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns"],
+      "question": "How does the Service Locator pattern differ from a Singleton?",
+      "options": ["Service Locator is faster than Singleton", "Service Locator provides access to a service through an abstraction, allowing the implementation to be swapped", "There is no meaningful difference", "Service Locator can only be used with static classes"],
+      "correct": [1],
+      "explanation": "Both provide global access, but Service Locator returns a service behind an interface. You can swap the implementation (e.g. real audio vs null audio for testing) without changing any calling code. A Singleton hardcodes the concrete class.",
+      "hint": "What if you want to swap real audio for a silent mock during testing?"
+    },
+    {
+      "id": "patterns-component-what",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["csharp", "patterns", "unity"],
+      "question": "What is the core idea behind the Component pattern?",
+      "options": ["All logic should live in a single manager class", "Break behaviour into independent, reusable pieces that can be attached to any object", "Components must always communicate with each other", "Each GameObject should have exactly one component"],
+      "correct": [1],
+      "explanation": "The Component pattern decouples functionality into self-contained pieces. In Unity, this is the entire architecture — you attach Rigidbody, Collider, and your own scripts independently to any GameObject."
+    },
+    {
+      "id": "patterns-decorator-what",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns"],
+      "question": "What does the Decorator pattern allow you to do?",
+      "options": ["Remove behaviour from an object permanently", "Add behaviour to an individual object at runtime without modifying its class", "Replace inheritance entirely", "Create copies of an object"],
+      "correct": [1],
+      "explanation": "Decorators wrap an object and add behaviour on top of it. A weapon can be wrapped with a SilencerDecorator, then a ScopeDecorator — each adds functionality without modifying the base weapon class. Decorators can be stacked and removed at runtime.",
+      "hint": "Think about attaching a silencer and a scope to a weapon — each modifies the weapon's behaviour independently."
+    },
+    {
+      "id": "patterns-facade-what",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": ["csharp", "patterns"],
+      "question": "What does the Facade pattern provide?",
+      "options": ["A way to duplicate objects", "A simplified interface to a complex subsystem of classes", "A method for saving game state", "An event-driven messaging system"],
+      "correct": [1],
+      "explanation": "A Facade is a single class that provides a simple interface to a complex group of classes. Instead of interacting with 10 audio classes directly, you interact with an AudioManager facade that exposes PlaySound, StopAll, etc."
+    },
+    {
+      "id": "patterns-double-buffer",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": ["csharp", "patterns"],
+      "question": "Why does the Double Buffer pattern use two buffers instead of one?",
+      "options": ["To use more memory for better performance", "So one buffer can be read from while the other is being written to, preventing partial or corrupted data", "To compress data more efficiently", "To allow multithreaded access without locks"],
+      "correct": [1],
+      "explanation": "With one buffer, readers would see partially updated data. Double Buffer lets you write a complete new frame to buffer A while buffer B displays the previous frame. When writing is done, you swap them. This is how screen rendering, cellular automata, and motion blur work.",
+      "hint": "What would happen if you read from the same buffer you're writing to?"
+    }
+  ]
+}

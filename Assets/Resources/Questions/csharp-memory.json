@@ -1,0 +1,212 @@
+{
+  "questions": [
+    {
+      "id": "csharp-memory-gc-generations",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What are the three GC generations in .NET and what is their purpose?",
+      "options": [
+        "Gen 0, 1, 2 — they separate objects by size",
+        "Gen 0, 1, 2 — they separate objects by age, collecting short-lived objects more frequently",
+        "Gen A, B, C — they separate objects by type",
+        "There is only one generation in Unity's Mono runtime"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Gen 0 holds new short-lived objects and is collected most often. Objects that survive a collection are promoted to Gen 1, then Gen 2. This avoids scanning long-lived objects on every collection. Note: Unity's older Mono backend uses Boehm GC which is non-generational, but IL2CPP on newer Unity versions supports incremental GC.",
+      "hint": "New objects go in Gen 0. Survivors get promoted. Higher generations are collected less often."
+    },
+    {
+      "id": "csharp-memory-idisposable",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What is the purpose of implementing `IDisposable`?",
+      "options": [
+        "To make objects eligible for garbage collection",
+        "To provide deterministic cleanup of unmanaged resources",
+        "To prevent the GC from collecting the object",
+        "To mark the object as readonly"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "IDisposable.Dispose() lets you release unmanaged resources (file handles, native memory, database connections) immediately rather than waiting for the GC finalizer. Use it with 'using' statements for automatic cleanup.",
+      "hint": "The GC handles managed memory. File handles, sockets, and native memory need manual cleanup."
+    },
+    {
+      "id": "csharp-memory-using-statement",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What does the `using` statement guarantee for an IDisposable object?",
+      "options": [
+        "The object is never garbage collected",
+        "Dispose is called when the block exits, even if an exception is thrown",
+        "The object is immediately freed from memory",
+        "The object is shared across threads safely"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The using statement compiles into a try/finally that calls Dispose in the finally block. This ensures cleanup happens regardless of exceptions."
+    },
+    {
+      "id": "csharp-memory-finalizer",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "Why should finalizers (~ClassName) be avoided in most cases?",
+      "options": [
+        "Finalizers prevent the class from being instantiated",
+        "Objects with finalizers survive an extra GC cycle and are collected non-deterministically on a separate thread",
+        "Finalizers cause compile errors in Unity",
+        "Finalizers are called immediately when the object goes out of scope"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The GC places finalizable objects on a finalization queue instead of collecting them immediately. They survive to the next generation, and the finalizer runs on a separate thread at an unpredictable time. Prefer IDisposable for cleanup."
+    },
+    {
+      "id": "csharp-memory-span",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What is `Span<T>` used for?",
+      "options": [
+        "Allocating managed arrays on the heap",
+        "Providing a safe, allocation-free view over contiguous memory",
+        "Replacing List<T> for dynamic collections",
+        "Enabling multithreaded access to arrays"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Span<T> is a ref struct that provides a type-safe view over arrays, stack memory (stackalloc), or native memory without allocating. It enables slicing and processing data without copying.",
+      "hint": "It is a ref struct that wraps a pointer and a length — no copying, no allocating."
+    },
+    {
+      "id": "csharp-memory-stackalloc",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What does `stackalloc` do?",
+      "options": [
+        "Allocates memory on the heap with a stack-like lifetime",
+        "Allocates a block of memory on the stack, avoiding GC entirely",
+        "Creates a new thread stack",
+        "Allocates memory that persists across method calls"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "stackalloc allocates a block of memory on the stack frame. It's freed automatically when the method returns. Combined with Span<T>, it enables zero-allocation temporary buffers. Be cautious with large allocations — stack space is limited.",
+      "hint": "Stack memory is freed when the method returns. No GC involved."
+    },
+    {
+      "id": "csharp-memory-gc-collect",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "Why is calling `GC.Collect()` manually generally discouraged?",
+      "options": [
+        "It does nothing at runtime",
+        "It forces a full collection which causes a frame spike and disrupts the GC's internal optimisation heuristics",
+        "It only works in the editor",
+        "It permanently disables automatic collection"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Manual GC.Collect() triggers a full blocking collection across all generations, causing a noticeable frame spike. It also resets the GC's adaptive budgets. Only use it at non-critical moments like scene loading screens.",
+      "hint": "A full collection pauses everything to scan all generations."
+    },
+    {
+      "id": "csharp-memory-closure-alloc",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "Why do lambda closures that capture local variables cause heap allocations?",
+      "options": [
+        "Lambdas always run on a background thread",
+        "The compiler generates a class to hold the captured variables, which is allocated on the heap",
+        "Local variables are copied into a new array",
+        "Closures disable the garbage collector"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "When a lambda captures a local variable, the compiler creates a hidden class (display class) to store it. An instance of this class is heap-allocated. In hot paths, this creates GC pressure. Avoid captures in performance-critical code.",
+      "hint": "The compiler generates a hidden class (display class) to hold captured variables."
+    },
+    {
+      "id": "csharp-memory-string-interning",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What is string interning in .NET?",
+      "options": [
+        "Compressing strings to save memory",
+        "Storing one copy of each unique string literal in a shared pool so identical literals reference the same object",
+        "Converting strings to byte arrays",
+        "Encrypting strings at compile time"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The CLR automatically interns string literals — identical compile-time strings share the same reference. Runtime-created strings are not interned by default unless you call string.Intern(). This saves memory but the intern pool is never garbage collected.",
+      "hint": "The CLR keeps a pool of string literals. \"hello\" == \"hello\" is a reference comparison that passes."
+    },
+    {
+      "id": "csharp-memory-loh",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "memory"
+      ],
+      "question": "What is the Large Object Heap (LOH)?",
+      "options": [
+        "A heap for objects larger than 85,000 bytes that is only collected during Gen 2 collections and is not compacted by default",
+        "A special heap for strings only",
+        "A heap that is collected every frame",
+        "A heap for static objects"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Objects 85,000+ bytes go on the LOH. It is only collected during full Gen 2 collections and is not compacted by default, which can lead to memory fragmentation. Avoid frequent large array allocations. Note: this applies to .NET — Unity's Boehm GC does not have an LOH, but IL2CPP builds on newer platforms may use a different allocator.",
+      "hint": "Objects over 85KB go to a special heap that is rarely collected and never compacted by default."
+    }
+  ]
+}

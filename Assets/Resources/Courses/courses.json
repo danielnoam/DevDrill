@@ -3,41 +3,82 @@
     {
       "id": "csharp-fundamentals",
       "name": "C# Fundamentals",
-      "description": "Core C# concepts for beginners",
+      "description": "Variables, types, OOP basics, collections, and core language features",
       "tags": ["csharp"],
       "excludeTags": [],
+      "difficulties": ["beginner"],
       "matchAll": false
     },
     {
       "id": "csharp-expanded",
       "name": "C# Expanded",
-      "description": "Intermediate and advanced C#",
+      "description": "Generics, async/await, LINQ, delegates, and advanced OOP",
       "tags": ["csharp"],
       "excludeTags": [],
+      "difficulties": ["intermediate", "advanced"],
       "matchAll": false
     },
     {
       "id": "unity-fundamentals",
       "name": "Unity Fundamentals",
-      "description": "Core Unity concepts for beginners",
+      "description": "Lifecycle, GameObjects, components, physics, and ScriptableObjects",
       "tags": ["unity"],
       "excludeTags": [],
+      "difficulties": ["beginner"],
       "matchAll": false
     },
     {
       "id": "unity-expanded",
       "name": "Unity Expanded",
-      "description": "Intermediate and advanced Unity",
+      "description": "Execution order, coroutine edge cases, kinematic physics, and runtime patterns",
       "tags": ["unity"],
       "excludeTags": [],
+      "difficulties": ["intermediate", "advanced"],
       "matchAll": false
     },
     {
       "id": "addressables",
       "name": "Addressables",
-      "description": "Unity's asset management system for scalable projects",
+      "description": "Async asset loading, reference counting, groups, profiles, and remote catalogs",
       "tags": ["addressables"],
       "excludeTags": [],
+      "difficulties": [],
+      "matchAll": false
+    },
+    {
+      "id": "solid-principles",
+      "name": "SOLID Principles",
+      "description": "SRP, Open/Closed, Liskov, Interface Segregation, and Dependency Inversion",
+      "tags": ["solid"],
+      "excludeTags": [],
+      "difficulties": [],
+      "matchAll": false
+    },
+    {
+      "id": "csharp-memory",
+      "name": "C# Memory & Performance",
+      "description": "GC generations, heap vs stack, boxing, IDisposable, Span, and allocation patterns",
+      "tags": ["memory"],
+      "excludeTags": [],
+      "difficulties": [],
+      "matchAll": false
+    },
+    {
+      "id": "unity-profiling",
+      "name": "Unity Profiling",
+      "description": "CPU and GPU profiling, Frame Debugger, draw calls, and memory snapshots",
+      "tags": ["profiling"],
+      "excludeTags": [],
+      "difficulties": [],
+      "matchAll": false
+    },
+    {
+      "id": "design-patterns",
+      "name": "Design Patterns",
+      "description": "Command, State, Factory, Observer, Decorator, and more",
+      "tags": ["patterns"],
+      "excludeTags": [],
+      "difficulties": [],
       "matchAll": false
     }
   ]

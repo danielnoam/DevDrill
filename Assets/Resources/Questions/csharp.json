@@ -4,371 +4,1151 @@
       "id": "csharp-oop-interface-what",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop"],
+      "tags": [
+        "csharp",
+        "oop"
+      ],
       "question": "What is an interface in C#?",
-      "options": ["A contract defining members a type must implement, with no implementation", "A class that can't be instantiated", "A type of struct", "A base class with optional methods"],
-      "correct": [0],
+      "options": [
+        "A contract defining members a type must implement, with no implementation",
+        "A class that can't be instantiated",
+        "A type of struct",
+        "A base class with optional methods"
+      ],
+      "correct": [
+        0
+      ],
       "explanation": "An interface defines a contract — method and property signatures with no implementation (prior to C# 8 default interface methods). Any type that implements the interface must provide the implementation."
     },
     {
       "id": "csharp-oop-interface-true",
       "type": "MultiSelect",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop"],
+      "tags": [
+        "csharp",
+        "oop"
+      ],
       "question": "Which of the following are true about interfaces in C#?",
-      "options": ["They can have method signatures", "They can have instance fields", "A class can implement multiple interfaces", "They can be instantiated directly"],
-      "correct": [0, 2],
+      "options": [
+        "They can have method signatures",
+        "They can have instance fields",
+        "A class can implement multiple interfaces",
+        "They can be instantiated directly"
+      ],
+      "correct": [
+        0,
+        2
+      ],
       "explanation": "Interfaces support multiple implementation but cannot have instance fields and cannot be instantiated directly."
     },
     {
       "id": "csharp-oop-polymorphism",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop"],
+      "tags": [
+        "csharp",
+        "oop"
+      ],
       "question": "What does polymorphism allow you to do?",
-      "options": ["Hide class fields from subclasses", "Treat different types through a shared base type or interface", "Prevent a class from being inherited", "Define multiple constructors on a class"],
-      "correct": [1],
+      "options": [
+        "Hide class fields from subclasses",
+        "Treat different types through a shared base type or interface",
+        "Prevent a class from being inherited",
+        "Define multiple constructors on a class"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Polymorphism lets you write code against a base type or interface and have different behaviour at runtime depending on the actual type."
     },
     {
       "id": "csharp-oop-abstract-keyword",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop", "inheritance"],
+      "tags": [
+        "csharp",
+        "oop",
+        "inheritance"
+      ],
       "question": "What is the purpose of the `abstract` keyword on a class?",
-      "options": ["It makes all methods private", "It prevents the class from being inherited", "It prevents the class from being instantiated directly", "It makes the class static"],
-      "correct": [2],
+      "options": [
+        "It makes all methods private",
+        "It prevents the class from being inherited",
+        "It prevents the class from being instantiated directly",
+        "It makes the class static"
+      ],
+      "correct": [
+        2
+      ],
       "explanation": "Abstract classes cannot be instantiated directly — they are meant to be inherited and their abstract members overridden."
     },
     {
       "id": "csharp-oop-abstract-vs-interface",
       "type": "MultiSelect",
       "difficulty": "intermediate",
-      "tags": ["csharp", "oop", "inheritance"],
+      "tags": [
+        "csharp",
+        "oop",
+        "inheritance"
+      ],
       "question": "What are the differences between an abstract class and an interface?",
-      "options": ["Abstract classes can have constructors", "Interfaces can have instance fields", "A class can inherit multiple abstract classes", "Abstract classes can have implemented methods"],
-      "correct": [0, 3],
-      "explanation": "Abstract classes can have constructors and fully implemented methods. Interfaces cannot have instance fields, and C# does not support multiple class inheritance."
+      "options": [
+        "Abstract classes can have constructors",
+        "Interfaces can have instance fields",
+        "A class can inherit multiple abstract classes",
+        "Abstract classes can have implemented methods"
+      ],
+      "correct": [
+        0,
+        3
+      ],
+      "explanation": "Abstract classes can have constructors and fully implemented methods. Interfaces cannot have instance fields, and C# does not support multiple class inheritance.",
+      "hint": "Abstract classes can have constructors and method bodies. Interfaces cannot have instance fields."
     },
     {
       "id": "csharp-oop-sealed",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop"],
+      "tags": [
+        "csharp",
+        "oop"
+      ],
       "question": "What does the `sealed` keyword do to a class?",
-      "options": ["Prevents it from being instantiated", "Prevents it from being inherited", "Makes all its members private", "Makes it a singleton"],
-      "correct": [1],
+      "options": [
+        "Prevents it from being instantiated",
+        "Prevents it from being inherited",
+        "Makes all its members private",
+        "Makes it a singleton"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "A sealed class cannot be used as a base class — no other class can inherit from it. This also allows the JIT to make certain optimisations."
     },
     {
       "id": "csharp-oop-virtual-override",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop", "inheritance"],
+      "tags": [
+        "csharp",
+        "oop",
+        "inheritance"
+      ],
       "question": "What is required for a subclass to override a method from its base class?",
-      "options": ["The method must be public", "The base method must be marked virtual or abstract, and the subclass uses override", "The subclass must be sealed", "The base class must be abstract"],
-      "correct": [1],
+      "options": [
+        "The method must be public",
+        "The base method must be marked virtual or abstract, and the subclass uses override",
+        "The subclass must be sealed",
+        "The base class must be abstract"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "The base class method must be marked virtual (or abstract). The subclass then uses the override keyword. Without virtual, the base method cannot be properly overridden."
     },
     {
       "id": "csharp-oop-new-keyword-hiding",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "oop", "inheritance"],
+      "tags": [
+        "csharp",
+        "oop",
+        "inheritance"
+      ],
       "question": "What does the `new` keyword do when used on a method in a subclass?",
-      "options": ["Forces the override of a virtual method", "Hides the base class method without polymorphic dispatch", "Creates a new instance of the class", "Prevents the method from being inherited further"],
-      "correct": [1],
-      "explanation": "The new keyword hides the base class method. Unlike override, polymorphism does not apply — calling through a base type reference will call the base method, not the hidden one."
+      "options": [
+        "Forces the override of a virtual method",
+        "Hides the base class method without polymorphic dispatch",
+        "Creates a new instance of the class",
+        "Prevents the method from being inherited further"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The new keyword hides the base class method. Unlike override, polymorphism does not apply — calling through a base type reference will call the base method, not the hidden one.",
+      "hint": "Try: Base b = new Derived(); b.Method() — which version runs?"
     },
     {
       "id": "csharp-oop-base-keyword",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "oop", "inheritance"],
+      "tags": [
+        "csharp",
+        "oop",
+        "inheritance"
+      ],
       "question": "What does the `base` keyword allow you to do?",
-      "options": ["Access the base class constructor or overridden member from within a subclass", "Make a method call as fast as a direct call", "Access private fields of the base class", "Prevent further inheritance"],
-      "correct": [0],
+      "options": [
+        "Access the base class constructor or overridden member from within a subclass",
+        "Make a method call as fast as a direct call",
+        "Access private fields of the base class",
+        "Prevent further inheritance"
+      ],
+      "correct": [
+        0
+      ],
       "explanation": "base lets you call a base class constructor (base(...)) or access an overridden member (base.Method()) from within a derived class."
     },
     {
       "id": "csharp-basics-struct-vs-class",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "basics"],
+      "tags": [
+        "csharp",
+        "basics"
+      ],
       "question": "What is the core difference between a struct and a class in C#?",
-      "options": ["Structs support inheritance", "Structs are value types, classes are reference types", "Classes are stored on the stack", "There is no meaningful difference"],
-      "correct": [1],
+      "options": [
+        "Structs support inheritance",
+        "Structs are value types, classes are reference types",
+        "Classes are stored on the stack",
+        "There is no meaningful difference"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Structs are value types — they are copied on assignment and typically stack-allocated. Classes are reference types — variables hold a reference to a heap allocation."
     },
     {
       "id": "csharp-basics-static-method",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "basics"],
+      "tags": [
+        "csharp",
+        "basics"
+      ],
       "question": "What does the `static` keyword mean on a method?",
-      "options": ["The method can only be called once", "The method belongs to the type, not an instance", "The method cannot return a value", "The method is thread-safe"],
-      "correct": [1],
+      "options": [
+        "The method can only be called once",
+        "The method belongs to the type, not an instance",
+        "The method cannot return a value",
+        "The method is thread-safe"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Static methods belong to the type itself and are called without creating an instance. They cannot access instance (non-static) members."
     },
     {
       "id": "csharp-basics-post-increment",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "basics"],
+      "tags": [
+        "csharp",
+        "basics"
+      ],
       "question": "What is the output of this code?\n`int x = 5; Console.WriteLine(x++);`",
-      "options": ["6", "5", "4", "Compile error"],
-      "correct": [1],
-      "explanation": "The post-increment operator (x++) returns the current value first, then increments. So 5 is printed, then x becomes 6."
+      "options": [
+        "6",
+        "5",
+        "4",
+        "Compile error"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "The post-increment operator (x++) returns the current value first, then increments. So 5 is printed, then x becomes 6.",
+      "hint": "x++ returns the value before incrementing. ++x returns the value after."
     },
     {
       "id": "csharp-basics-nullable-value",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "basics"],
+      "tags": [
+        "csharp",
+        "basics"
+      ],
       "question": "What does `int?` mean in C#?",
-      "options": ["An int that defaults to zero", "A nullable int that can hold an int value or null", "An optional parameter", "An int that throws if accessed when unset"],
-      "correct": [1],
+      "options": [
+        "An int that defaults to zero",
+        "A nullable int that can hold an int value or null",
+        "An optional parameter",
+        "An int that throws if accessed when unset"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "int? is shorthand for Nullable<int>. It can hold any int value or null, and exposes .HasValue and .Value properties."
     },
     {
       "id": "csharp-basics-ref-vs-out",
       "type": "MultiSelect",
       "difficulty": "intermediate",
-      "tags": ["csharp", "basics"],
+      "tags": [
+        "csharp",
+        "basics"
+      ],
       "question": "What are the differences between `ref` and `out` parameters?",
-      "options": ["ref requires the variable to be initialised before passing", "out requires the variable to be assigned inside the method", "ref and out are identical", "out variables do not need to be initialised before passing"],
-      "correct": [0, 1, 3],
-      "explanation": "ref requires the caller to initialise the variable first. out does not require prior initialisation but the method must assign it before returning. Both pass by reference."
+      "options": [
+        "ref requires the variable to be initialised before passing",
+        "out requires the variable to be assigned inside the method",
+        "ref and out are identical",
+        "out variables do not need to be initialised before passing"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "ref requires the caller to initialise the variable first. out does not require prior initialisation but the method must assign it before returning. Both pass by reference.",
+      "hint": "ref: caller initialises first. out: method must assign before returning."
     },
     {
       "id": "csharp-basics-string-immutable",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "basics"],
+      "tags": [
+        "csharp",
+        "basics"
+      ],
       "question": "Why is string concatenation with `+` in a tight loop a performance concern?",
-      "options": ["Strings use a fixed-size buffer that overflows", "Each concatenation creates a new string allocation on the heap", "The + operator is not overloaded for strings", "String comparison is O(n) which slows the loop"],
-      "correct": [1],
+      "options": [
+        "Strings use a fixed-size buffer that overflows",
+        "Each concatenation creates a new string allocation on the heap",
+        "The + operator is not overloaded for strings",
+        "String comparison is O(n) which slows the loop"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Strings are immutable in C#. Every + creates a new string object. In a loop this generates significant garbage. Use StringBuilder or string.Join for repeated concatenation."
     },
     {
       "id": "csharp-collections-list",
       "type": "MultiSelect",
       "difficulty": "beginner",
-      "tags": ["csharp", "collections"],
+      "tags": [
+        "csharp",
+        "collections"
+      ],
       "question": "Which of the following are true about `List<T>` in C#?",
-      "options": ["It has a fixed size", "It is generic", "Elements can be accessed by index", "It only stores reference types"],
-      "correct": [1, 2],
+      "options": [
+        "It has a fixed size",
+        "It is generic",
+        "Elements can be accessed by index",
+        "It only stores reference types"
+      ],
+      "correct": [
+        1,
+        2
+      ],
       "explanation": "List<T> is generic and supports index access. It is dynamic in size and can store both value and reference types."
     },
     {
       "id": "csharp-collections-dictionary-lookup",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "collections"],
+      "tags": [
+        "csharp",
+        "collections"
+      ],
       "question": "What is the time complexity of a key lookup in a `Dictionary<TKey, TValue>`?",
-      "options": ["O(n) — it scans all entries", "O(log n) — it uses a binary search", "O(1) — amortized constant time via hashing", "O(n log n) — it sorts keys first"],
-      "correct": [2],
+      "options": [
+        "O(n) — it scans all entries",
+        "O(log n) — it uses a binary search",
+        "O(1) — amortized constant time via hashing",
+        "O(n log n) — it sorts keys first"
+      ],
+      "correct": [
+        2
+      ],
       "explanation": "Dictionary uses a hash table. Key lookup is O(1) amortised — it hashes the key and goes directly to the bucket, without scanning other entries."
     },
     {
       "id": "csharp-collections-hashset",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "collections"],
+      "tags": [
+        "csharp",
+        "collections"
+      ],
       "question": "When should you prefer `HashSet<T>` over `List<T>`?",
-      "options": ["When order of elements matters", "When you need fast Contains checks and don't need duplicates or index access", "When storing value types only", "When the collection is small"],
-      "correct": [1],
-      "explanation": "HashSet provides O(1) Contains. List.Contains is O(n). Use HashSet when you frequently check membership and don't need ordering or duplicates."
+      "options": [
+        "When order of elements matters",
+        "When you need fast Contains checks and don't need duplicates or index access",
+        "When storing value types only",
+        "When the collection is small"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "HashSet provides O(1) Contains. List.Contains is O(n). Use HashSet when you frequently check membership and don't need ordering or duplicates.",
+      "hint": "List.Contains is O(n). HashSet.Contains is O(1)."
     },
     {
       "id": "csharp-collections-trygetvalue",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "collections"],
+      "tags": [
+        "csharp",
+        "collections"
+      ],
       "question": "What is the advantage of `Dictionary.TryGetValue` over checking `ContainsKey` then accessing by key?",
-      "options": ["TryGetValue is more readable", "TryGetValue avoids a double lookup by combining the check and retrieval in one operation", "ContainsKey throws if the key is missing", "There is no difference"],
-      "correct": [1],
+      "options": [
+        "TryGetValue is more readable",
+        "TryGetValue avoids a double lookup by combining the check and retrieval in one operation",
+        "ContainsKey throws if the key is missing",
+        "There is no difference"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Calling ContainsKey then indexing performs two hash lookups. TryGetValue does it in one, returning the value directly in an out parameter."
     },
     {
       "id": "csharp-linq-where",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "linq"],
+      "tags": [
+        "csharp",
+        "linq"
+      ],
       "question": "When is a LINQ query with `Where` actually executed?",
-      "options": ["When the query is written", "When it is assigned to a variable", "When the result is enumerated (e.g. in a foreach or .ToList())", "When the source collection changes"],
-      "correct": [2],
+      "options": [
+        "When the query is written",
+        "When it is assigned to a variable",
+        "When the result is enumerated (e.g. in a foreach or .ToList())",
+        "When the source collection changes"
+      ],
+      "correct": [
+        2
+      ],
       "explanation": "LINQ uses deferred execution. The query is a description of what to do, not the result. Execution happens when you iterate — e.g. foreach, ToList(), Count()."
     },
     {
       "id": "csharp-linq-allocation",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "linq", "memory"],
+      "tags": [
+        "csharp",
+        "linq",
+        "memory"
+      ],
       "question": "Why should you avoid LINQ in performance-critical code like Update loops?",
-      "options": ["LINQ queries execute on a background thread", "LINQ methods allocate iterators and closures on the heap, creating garbage", "LINQ does not support generic types", "LINQ throws in IL2CPP builds"],
-      "correct": [1],
-      "explanation": "Each LINQ method allocates enumerator objects. Closures in lambdas may also allocate. In a tight loop this creates GC pressure. For hot paths, use manual loops."
+      "options": [
+        "LINQ queries execute on a background thread",
+        "LINQ methods allocate iterators and closures on the heap, creating garbage",
+        "LINQ does not support generic types",
+        "LINQ throws in IL2CPP builds"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Each LINQ method allocates enumerator objects. Closures in lambdas may also allocate. In a tight loop this creates GC pressure. For hot paths, use manual loops.",
+      "hint": "Each chained LINQ method creates an iterator object on the heap."
     },
     {
       "id": "csharp-linq-firstordefault",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "linq"],
+      "tags": [
+        "csharp",
+        "linq"
+      ],
       "question": "What does `FirstOrDefault` return if no element matches the predicate?",
-      "options": ["It throws an InvalidOperationException", "null for reference types, default value for value types", "An empty collection", "The last element"],
-      "correct": [1],
+      "options": [
+        "It throws an InvalidOperationException",
+        "null for reference types, default value for value types",
+        "An empty collection",
+        "The last element"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "FirstOrDefault returns the default value of the type if nothing matches — null for reference types, 0 for int, etc. First() would throw instead."
     },
     {
       "id": "csharp-events-action",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "events"],
+      "tags": [
+        "csharp",
+        "events"
+      ],
       "question": "What is `Action` in C#?",
-      "options": ["A built-in coroutine type", "A generic delegate type that takes no return value", "A Unity lifecycle method", "An async task wrapper"],
-      "correct": [1],
+      "options": [
+        "A built-in coroutine type",
+        "A generic delegate type that takes no return value",
+        "A Unity lifecycle method",
+        "An async task wrapper"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Action is a built-in generic delegate for methods that return void. Action<T> takes one parameter, Action<T1,T2> takes two, and so on."
     },
     {
       "id": "csharp-events-func",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "events"],
+      "tags": [
+        "csharp",
+        "events"
+      ],
       "question": "How does `Func<int, bool>` differ from `Action<int>`?",
-      "options": ["Func takes no parameters", "Func has a return type — the last type parameter is the return type", "Action can return values, Func cannot", "They are identical"],
-      "correct": [1],
+      "options": [
+        "Func takes no parameters",
+        "Func has a return type — the last type parameter is the return type",
+        "Action can return values, Func cannot",
+        "They are identical"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Func always has a return type as its last type parameter. Func<int, bool> takes an int and returns a bool. Action always returns void."
     },
     {
       "id": "csharp-events-unsubscribe",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "events"],
+      "tags": [
+        "csharp",
+        "events"
+      ],
       "question": "Why is it important to unsubscribe from events when an object is destroyed?",
-      "options": ["Events hold strong references to subscribers, preventing garbage collection and causing null reference calls", "Events become invalid after the first call", "The event system will throw if a subscriber is destroyed", "Unity automatically unsubscribes all events"],
-      "correct": [0],
+      "options": [
+        "Events hold strong references to subscribers, preventing garbage collection and causing null reference calls",
+        "Events become invalid after the first call",
+        "The event system will throw if a subscriber is destroyed",
+        "Unity automatically unsubscribes all events"
+      ],
+      "correct": [
+        0
+      ],
       "explanation": "An event holds a reference to the delegate, which holds a reference to the subscriber. If the subscriber is destroyed but not unsubscribed, it cannot be GC'd and the event will attempt to call a dead object."
     },
     {
       "id": "csharp-events-multicast",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "events"],
+      "tags": [
+        "csharp",
+        "events"
+      ],
       "question": "You subscribe to an event twice with the same method. How many times will that method be called when the event fires?",
-      "options": ["Once — duplicates are ignored", "Twice — delegates are multicast and maintain all subscriptions", "It throws an exception", "It depends on the event keyword"],
-      "correct": [1],
-      "explanation": "Delegates are multicast — adding the same method twice creates two invocations. Always guard subscribe calls or use -= before += to avoid accidental double-subscription."
+      "options": [
+        "Once — duplicates are ignored",
+        "Twice — delegates are multicast and maintain all subscriptions",
+        "It throws an exception",
+        "It depends on the event keyword"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Delegates are multicast — adding the same method twice creates two invocations. Always guard subscribe calls or use -= before += to avoid accidental double-subscription.",
+      "hint": "Delegates maintain an invocation list. += appends, it does not check for duplicates."
     },
     {
       "id": "csharp-async-task-what",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "async"],
+      "tags": [
+        "csharp",
+        "async"
+      ],
       "question": "What does the `async` keyword do to a method?",
-      "options": ["Makes it run on a background thread immediately", "Allows the method to use await and returns a Task", "Makes it run faster", "Converts it to a coroutine"],
-      "correct": [1],
+      "options": [
+        "Makes it run on a background thread immediately",
+        "Allows the method to use await and returns a Task",
+        "Makes it run faster",
+        "Converts it to a coroutine"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "async enables the use of await inside the method and wraps the return value in a Task (or Task<T>). It does not by itself put anything on a background thread."
     },
     {
       "id": "csharp-async-await-what",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "async"],
+      "tags": [
+        "csharp",
+        "async"
+      ],
       "question": "What does `await` do when applied to a Task?",
-      "options": ["Blocks the current thread until the Task completes", "Suspends the current method and returns control to the caller until the Task completes", "Runs the Task on a new thread", "Cancels the Task if it takes too long"],
-      "correct": [1],
+      "options": [
+        "Blocks the current thread until the Task completes",
+        "Suspends the current method and returns control to the caller until the Task completes",
+        "Runs the Task on a new thread",
+        "Cancels the Task if it takes too long"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "await suspends the async method at that point, returning control to the caller without blocking the thread. Execution resumes after the Task completes."
     },
     {
       "id": "csharp-async-configureawait",
       "type": "SingleChoice",
       "difficulty": "advanced",
-      "tags": ["csharp", "async"],
+      "tags": [
+        "csharp",
+        "async"
+      ],
       "question": "What does `ConfigureAwait(false)` do?",
-      "options": ["Disables exception handling on the Task", "Tells the awaiter not to capture the current synchronisation context, allowing continuation on any thread", "Makes the Task fire-and-forget", "Forces the continuation onto the main thread"],
-      "correct": [1],
-      "explanation": "By default await captures the synchronisation context (e.g. Unity main thread) and resumes there. ConfigureAwait(false) skips this, allowing the continuation to run on any available thread. Use it in library code, but be careful in Unity — most Unity API calls must be on the main thread."
+      "options": [
+        "Disables exception handling on the Task",
+        "Tells the awaiter not to capture the current synchronisation context, allowing continuation on any thread",
+        "Makes the Task fire-and-forget",
+        "Forces the continuation onto the main thread"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "By default await captures the synchronisation context (e.g. Unity main thread) and resumes there. ConfigureAwait(false) skips this, allowing the continuation to run on any available thread. Use it in library code, but be careful in Unity — most Unity API calls must be on the main thread.",
+      "hint": "By default, await captures the current SynchronizationContext and resumes on it."
     },
     {
       "id": "csharp-async-task-vs-coroutine",
       "type": "MultiSelect",
       "difficulty": "intermediate",
-      "tags": ["csharp", "async", "unity", "coroutines"],
+      "tags": [
+        "csharp",
+        "async",
+        "unity",
+        "coroutines"
+      ],
       "question": "Which of the following are advantages of async/await over Unity coroutines?",
-      "options": ["Async methods can return values directly", "Async supports proper exception propagation with try/catch", "Async runs off the main thread by default", "Async works outside of MonoBehaviour"],
-      "correct": [0, 1, 3],
-      "explanation": "Async/await can return values (Task<T>), properly propagate exceptions, and work in non-MonoBehaviour classes. Coroutines can only signal completion via callbacks. Async does not run off the main thread by default — that requires Task.Run or a thread pool."
+      "options": [
+        "Async methods can return values directly",
+        "Async supports proper exception propagation with try/catch",
+        "Async runs off the main thread by default",
+        "Async works outside of MonoBehaviour"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Async/await can return values (Task<T>), properly propagate exceptions, and work in non-MonoBehaviour classes. Coroutines can only signal completion via callbacks. Async does not run off the main thread by default — that requires Task.Run or a thread pool.",
+      "hint": "Coroutines return IEnumerator — they cannot return values or propagate exceptions via try/catch."
     },
     {
       "id": "csharp-async-cancellationtoken",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "async"],
+      "tags": [
+        "csharp",
+        "async"
+      ],
       "question": "What is a `CancellationToken` used for in async code?",
-      "options": ["To set a timeout duration on a Task", "To signal to an async operation that it should stop early", "To catch exceptions from cancelled Tasks", "To run a Task on a specific thread"],
-      "correct": [1],
-      "explanation": "A CancellationToken is passed into async methods so the caller can signal cancellation. The method checks IsCancellationRequested or calls ThrowIfCancellationRequested to abort cleanly."
+      "options": [
+        "To set a timeout duration on a Task",
+        "To signal to an async operation that it should stop early",
+        "To catch exceptions from cancelled Tasks",
+        "To run a Task on a specific thread"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A CancellationToken is passed into async methods so the caller can signal cancellation. The method checks IsCancellationRequested or calls ThrowIfCancellationRequested to abort cleanly.",
+      "hint": "The async method itself must check the token — nothing stops it automatically."
     },
     {
       "id": "csharp-async-fire-forget",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "async"],
+      "tags": [
+        "csharp",
+        "async"
+      ],
       "question": "What is the risk of calling an async method without awaiting it (fire-and-forget)?",
-      "options": ["The method runs synchronously instead", "Exceptions thrown inside the method are silently swallowed", "The method runs twice", "The Task is immediately cancelled"],
-      "correct": [1],
-      "explanation": "If you don't await a Task, exceptions thrown inside it are not observed and will be silently lost (or in some runtimes, rethrown on a finalizer thread). Always handle exceptions in fire-and-forget patterns."
+      "options": [
+        "The method runs synchronously instead",
+        "Exceptions thrown inside the method are silently swallowed",
+        "The method runs twice",
+        "The Task is immediately cancelled"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "If you don't await a Task, exceptions thrown inside it are not observed and will be silently lost (or in some runtimes, rethrown on a finalizer thread). Always handle exceptions in fire-and-forget patterns.",
+      "hint": "An unawaited Task has no observer for its exceptions."
     },
     {
       "id": "csharp-memory-gc-basics",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "memory"],
+      "tags": [
+        "csharp",
+        "memory"
+      ],
       "question": "What triggers the garbage collector in C#?",
-      "options": ["Calling GC.Collect() manually only", "Allocating enough objects to fill a generation heap threshold", "Every frame in Unity", "Reference types going out of scope"],
-      "correct": [1],
+      "options": [
+        "Calling GC.Collect() manually only",
+        "Allocating enough objects to fill a generation heap threshold",
+        "Every frame in Unity",
+        "Reference types going out of scope"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "The GC runs when a generation's allocation budget is exhausted. In Unity this can cause frame spikes. Reducing heap allocations (new, boxing, closures, LINQ) keeps GC pressure low."
     },
     {
       "id": "csharp-memory-boxing",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "memory"],
+      "tags": [
+        "csharp",
+        "memory"
+      ],
       "question": "What is boxing in C#?",
-      "options": ["Wrapping a method in a delegate", "Copying a value type into a heap-allocated object wrapper", "Casting between reference types", "Allocating an array of value types"],
-      "correct": [1],
-      "explanation": "Boxing wraps a value type (like int, bool, struct) in an object on the heap. It happens implicitly when passing value types to object parameters or non-generic collections. It causes heap allocation and should be avoided in hot paths."
+      "options": [
+        "Wrapping a method in a delegate",
+        "Copying a value type into a heap-allocated object wrapper",
+        "Casting between reference types",
+        "Allocating an array of value types"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Boxing wraps a value type (like int, bool, struct) in an object on the heap. It happens implicitly when passing value types to object parameters or non-generic collections. It causes heap allocation and should be avoided in hot paths.",
+      "hint": "Passing an int to a parameter typed as object wraps it in a heap-allocated box."
     },
     {
       "id": "csharp-memory-objectpool",
       "type": "SingleChoice",
       "difficulty": "intermediate",
-      "tags": ["csharp", "memory", "patterns"],
+      "tags": [
+        "csharp",
+        "memory",
+        "patterns"
+      ],
       "question": "What problem does an object pool solve?",
-      "options": ["Thread synchronisation between objects", "Frequent allocation and deallocation causing GC pressure", "Preventing objects from being accidentally destroyed", "Managing scene loading order"],
-      "correct": [1],
-      "explanation": "An object pool pre-allocates objects and recycles them instead of creating and destroying. This avoids repeated heap allocations and GC collection spikes — critical for frequently spawned objects like bullets or particles."
+      "options": [
+        "Thread synchronisation between objects",
+        "Frequent allocation and deallocation causing GC pressure",
+        "Preventing objects from being accidentally destroyed",
+        "Managing scene loading order"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "An object pool pre-allocates objects and recycles them instead of creating and destroying. This avoids repeated heap allocations and GC collection spikes — critical for frequently spawned objects like bullets or particles.",
+      "hint": "Every Instantiate allocates on the heap. Every Destroy eventually triggers GC."
     },
     {
       "id": "csharp-patterns-singleton",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "patterns"],
+      "tags": [
+        "csharp",
+        "patterns"
+      ],
       "question": "What does the Singleton pattern guarantee?",
-      "options": ["That a class cannot be subclassed", "That only one instance of a class exists and provides a global access point", "That all methods are thread-safe", "That the class is always initialised before other classes"],
-      "correct": [1],
+      "options": [
+        "That a class cannot be subclassed",
+        "That only one instance of a class exists and provides a global access point",
+        "That all methods are thread-safe",
+        "That the class is always initialised before other classes"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Singleton ensures a single instance of a class and provides a static access point to it. In Unity it's commonly implemented in Awake with a static Instance property."
     },
     {
       "id": "csharp-patterns-observer",
       "type": "SingleChoice",
       "difficulty": "beginner",
-      "tags": ["csharp", "patterns", "events"],
+      "tags": [
+        "csharp",
+        "patterns",
+        "events"
+      ],
       "question": "What problem does the Observer pattern solve?",
-      "options": ["Managing object lifecycle", "Decoupling a publisher from its subscribers so the publisher doesn't need to know who is listening", "Ensuring only one object handles an event", "Caching expensive computations"],
-      "correct": [1],
+      "options": [
+        "Managing object lifecycle",
+        "Decoupling a publisher from its subscribers so the publisher doesn't need to know who is listening",
+        "Ensuring only one object handles an event",
+        "Caching expensive computations"
+      ],
+      "correct": [
+        1
+      ],
       "explanation": "Observer lets objects subscribe to events without the publisher having direct references to them. C# events and UnityEvents are built-in implementations of this pattern."
+    },
+    {
+      "id": "csharp-solid-srp",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "solid"
+      ],
+      "question": "What does the Single Responsibility Principle state?",
+      "options": [
+        "A class should have only one method",
+        "A class should have only one reason to change",
+        "A class should only depend on one interface",
+        "A class should be instantiated only once"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "SRP says a class should have one reason to change — meaning it should own one responsibility. If a class handles both saving data and formatting UI, those are two reasons to change."
+    },
+    {
+      "id": "csharp-solid-ocp",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "solid"
+      ],
+      "question": "What does the Open/Closed Principle mean?",
+      "options": [
+        "Classes should be open for modification and closed for extension",
+        "Classes should be open for extension but closed for modification",
+        "Only open-source code should be used",
+        "Classes should never be sealed"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "OCP states that you should be able to extend a class's behaviour (via inheritance, interfaces, composition) without modifying its existing source code.",
+      "hint": "Inheritance, interfaces, and composition all let you extend without modifying."
+    },
+    {
+      "id": "csharp-solid-lsp",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "solid"
+      ],
+      "question": "What does the Liskov Substitution Principle require?",
+      "options": [
+        "Subclasses must override all base class methods",
+        "Subclasses must be substitutable for their base type without breaking correctness",
+        "Base classes should never be used directly",
+        "All classes should implement an interface"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "LSP means if code works with a base type, it must also work correctly with any subtype. A subclass that throws exceptions from inherited methods or changes expected behaviour violates LSP.",
+      "hint": "A Square that overrides Rectangle.SetWidth and breaks SetHeight violates this."
+    },
+    {
+      "id": "csharp-solid-isp",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "solid"
+      ],
+      "question": "What does the Interface Segregation Principle discourage?",
+      "options": [
+        "Using multiple interfaces on one class",
+        "Forcing classes to implement interface members they don't use",
+        "Having interfaces with only one method",
+        "Using abstract classes instead of interfaces"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "ISP says no class should be forced to implement methods it doesn't need. Prefer multiple small, focused interfaces over one large one."
+    },
+    {
+      "id": "csharp-solid-dip",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "solid"
+      ],
+      "question": "What does the Dependency Inversion Principle state?",
+      "options": [
+        "High-level modules should depend on low-level modules",
+        "Low-level modules should depend on high-level modules",
+        "Both high-level and low-level modules should depend on abstractions",
+        "Dependencies should be removed entirely"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "DIP says high-level modules should not depend on low-level modules — both should depend on abstractions (interfaces or abstract classes). This decouples systems and makes them easier to test and swap.",
+      "hint": "If you swap your database from SQL to Mongo, how many classes need to change?"
+    },
+    {
+      "id": "csharp-solid-srp-unity",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "solid",
+        "unity"
+      ],
+      "question": "A MonoBehaviour handles player input, movement physics, and health management. Which SOLID principle does this violate?",
+      "options": [
+        "Open/Closed",
+        "Liskov Substitution",
+        "Single Responsibility",
+        "Dependency Inversion"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "This class has three reasons to change — input, physics, and health. SRP says to split these into separate components, each owning one responsibility.",
+      "hint": "Input, movement, and health are three separate concerns."
+    },
+    {
+      "id": "csharp-exceptions-trycatch",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": [
+        "csharp",
+        "exceptions"
+      ],
+      "question": "What happens if an exception is thrown inside a `try` block?",
+      "options": [
+        "The program always crashes",
+        "Execution jumps to the matching catch block if one exists",
+        "The exception is silently ignored",
+        "The try block restarts from the beginning"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "When an exception is thrown, the runtime looks for a matching catch block. If found, execution transfers there. If no catch handles it, the exception propagates up the call stack."
+    },
+    {
+      "id": "csharp-exceptions-finally",
+      "type": "SingleChoice",
+      "difficulty": "beginner",
+      "tags": [
+        "csharp",
+        "exceptions"
+      ],
+      "question": "When does a `finally` block execute?",
+      "options": [
+        "Only when an exception is thrown",
+        "Only when no exception is thrown",
+        "Always, whether or not an exception was thrown",
+        "Only if the catch block rethrows"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The finally block always executes after the try (and catch, if triggered) completes. It is used for cleanup like closing streams or releasing resources."
+    },
+    {
+      "id": "csharp-exceptions-custom",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "exceptions"
+      ],
+      "question": "What should a custom exception class inherit from?",
+      "options": [
+        "System.Object",
+        "System.Exception or a more specific exception type",
+        "System.EventArgs",
+        "System.Attribute"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Custom exceptions should derive from System.Exception (or a more specific type like InvalidOperationException). This ensures they work with try/catch and carry standard exception properties like Message and StackTrace.",
+      "hint": "All catchable exceptions derive from System.Exception."
+    },
+    {
+      "id": "csharp-exceptions-when-filter",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "exceptions"
+      ],
+      "question": "What does the `when` keyword do in a catch clause?\n`catch (Exception e) when (e.Message.Contains(\"timeout\"))`",
+      "options": [
+        "It delays the catch by a specified time",
+        "It filters which exceptions the catch block handles based on a condition",
+        "It retries the try block when the condition is true",
+        "It logs the exception automatically"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Exception filters using 'when' let you conditionally match a catch block. If the condition is false, the runtime skips that catch and continues looking for another handler. The stack is not unwound until a match is found.",
+      "hint": "catch (HttpException e) when (e.StatusCode == 404) — the block is skipped if the status is not 404."
+    },
+    {
+      "id": "csharp-exceptions-control-flow",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "exceptions"
+      ],
+      "question": "Why should exceptions not be used for normal control flow?",
+      "options": [
+        "Exceptions cannot carry data",
+        "Throwing and catching exceptions is expensive compared to conditional checks",
+        "Catch blocks are not allowed in release builds",
+        "Exceptions can only be thrown once per method"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Throwing an exception involves capturing the stack trace and unwinding the stack, which is far more expensive than an if check. Use exceptions for truly exceptional conditions, not expected scenarios like end-of-collection.",
+      "hint": "Throwing captures the full stack trace — compare that cost to a simple if/else."
+    },
+    {
+      "id": "csharp-oop-sealed-method",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "oop",
+        "inheritance"
+      ],
+      "question": "What does `sealed` do when applied to an overridden method?",
+      "options": [
+        "It makes the method private",
+        "It prevents further derived classes from overriding that method",
+        "It makes the method static",
+        "It removes the method from the base class"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A sealed override prevents any further subclass from overriding that specific method. The class itself can still be inherited — only that method is locked.",
+      "hint": "You can seal an individual override without sealing the whole class."
+    },
+    {
+      "id": "csharp-oop-internal",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "oop"
+      ],
+      "question": "What does the `internal` access modifier restrict?",
+      "options": [
+        "Access to the current class only",
+        "Access to the current class and its subclasses",
+        "Access to types within the same assembly",
+        "Access to the current namespace"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Internal members are accessible anywhere within the same assembly (DLL/project) but not from external assemblies. It is the default access level for top-level types.",
+      "hint": "In Unity, each Assembly Definition creates a separate assembly."
+    },
+    {
+      "id": "csharp-oop-explicit-interface",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "oop"
+      ],
+      "question": "When would you use explicit interface implementation?",
+      "options": [
+        "To make interface methods public",
+        "To resolve conflicts when a class implements two interfaces with the same method signature",
+        "To make interface methods virtual",
+        "To prevent the interface from being inherited"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Explicit implementation (void IFoo.Method()) hides the member from the class's public API. It's only accessible through the interface type. This resolves ambiguity when two interfaces define methods with the same name.",
+      "hint": "void IClickable.Execute() and void IDraggable.Execute() — how does the class distinguish them?"
+    },
+    {
+      "id": "csharp-oop-default-interface",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "oop"
+      ],
+      "question": "What are default interface methods (C# 8+)?",
+      "options": [
+        "Methods automatically generated by the compiler",
+        "Methods with a body defined directly in the interface that implementing types can optionally override",
+        "Methods that are always called before any class method",
+        "Static methods on interfaces"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C# 8 introduced default interface methods — you can provide a method body in the interface itself. Implementing classes inherit the default but can override it. This allows adding methods to interfaces without breaking existing implementations.",
+      "hint": "C# 8 lets interfaces provide a method body that implementors inherit for free."
+    },
+    {
+      "id": "csharp-basics-readonly-struct",
+      "type": "SingleChoice",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "basics",
+        "memory"
+      ],
+      "question": "What does `readonly struct` guarantee?",
+      "options": [
+        "The struct cannot be used as a field",
+        "All fields are immutable and the compiler enforces no mutation after construction",
+        "The struct is allocated on the heap",
+        "The struct can only be passed by reference"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A readonly struct guarantees immutability — all fields must be readonly and no method can mutate state. The compiler enforces this, and it allows the runtime to avoid defensive copies when passing by in/ref readonly.",
+      "hint": "If a struct is immutable, the compiler never needs to make a defensive copy when passing it by in."
+    },
+    {
+      "id": "csharp-basics-ref-struct",
+      "type": "SingleChoice",
+      "difficulty": "advanced",
+      "tags": [
+        "csharp",
+        "basics",
+        "memory"
+      ],
+      "question": "What is the key restriction of a `ref struct`?",
+      "options": [
+        "It cannot have fields",
+        "It can only live on the stack and cannot be boxed, used in async methods, or stored on the heap",
+        "It must be passed by value",
+        "It cannot implement interfaces"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "ref structs (like Span<T>) are stack-only. They cannot be boxed, captured in closures, stored in arrays/classes, or used in async methods. This enables safe, allocation-free slicing of memory.",
+      "hint": "Span<T> is a ref struct. It cannot be a field in a class, boxed, or used in async methods."
+    },
+    {
+      "id": "csharp-basics-struct-when",
+      "type": "MultiSelect",
+      "difficulty": "intermediate",
+      "tags": [
+        "csharp",
+        "basics"
+      ],
+      "question": "When is a struct generally preferred over a class?",
+      "options": [
+        "When the type is small (under ~16 bytes)",
+        "When you need inheritance",
+        "When it represents a single value or measurement",
+        "When it is frequently allocated and short-lived"
+      ],
+      "correct": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "Structs avoid heap allocation, making them ideal for small, value-like types that are created and discarded frequently. They don't support inheritance (only interface implementation).",
+      "hint": "Structs live on the stack (or inline). Classes live on the heap behind a reference."
     }
   ]
 }

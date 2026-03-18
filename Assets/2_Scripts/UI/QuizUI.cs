@@ -22,6 +22,7 @@ public class QuizUI : MonoBehaviour
     [Header("Botton Bar")]
     [SerializeField] private GameObject bottomBar;
     [SerializeField] private Button continueButton;
+    [SerializeField] private Button hintButton;
     
     [Header("Feedback Panel")]
     [SerializeField] private GameObject feedbackPanel;
@@ -34,6 +35,9 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private Toggle optionButtonPrefab;
     [SerializeField, Inline] private SOFontStyle fontStyle;
     
+    [Header("Hint Panel")]
+    [SerializeField] private GameObject hintPanel;
+    [SerializeField] private TextMeshProUGUI hintText;
 
     
     [SerializeField, AutoGetScene, HideInInspector] private QuizManager quizManager;
@@ -47,6 +51,7 @@ public class QuizUI : MonoBehaviour
     private void Awake()
     {
         continueButton.onClick.AddListener(OnContinueClicked);
+        hintButton.onClick.AddListener(OnHintClicked);
         exitButton.onClick.AddListener(quizManager.QuitQuiz);
         skipButton.onClick.AddListener(quizManager.SkipQuestion);
         
@@ -55,6 +60,7 @@ public class QuizUI : MonoBehaviour
         QuizManager.OnQuizCompleted += QuizCompleted;
         QuizManager.OnQuizStarted += QuizStarted;
     }
+    
 
     private void OnDestroy()
     {
@@ -71,6 +77,7 @@ public class QuizUI : MonoBehaviour
         questionPanel.SetActive(true);
         topBar.SetActive(true);
         feedbackPanel.SetActive(false);
+        hintPanel.SetActive(false);
         continueButton.GetComponentInChildren<TextMeshProUGUI>().text = "Submit";
     }
     
@@ -80,6 +87,7 @@ public class QuizUI : MonoBehaviour
         questionPanel.SetActive(false);
         feedbackPanel.SetActive(true);
         topBar.SetActive(false);
+        hintPanel.SetActive(false);
         feedbackText.text = $"Quiz Complete!\n{correct}/{total}";
         continueButton.interactable = true;
         continueButton.GetComponentInChildren<TextMeshProUGUI>().text = "Return";
@@ -106,6 +114,8 @@ public class QuizUI : MonoBehaviour
         }
         _toggles.Clear();
         
+        hintButton.gameObject.SetActive(!data.hint.IsBlank());
+        hintPanel.SetActive(false);
         feedbackPanel.SetActive(false);
         questionPanel.SetActive(true);
         UpdateContinueButton();
@@ -118,6 +128,8 @@ public class QuizUI : MonoBehaviour
         
         questionsProgressText.text = $"Question {answered}/{total}";
         progressBarFill.fillAmount = (float)answered / total;
+        
+        hintText.text = data.hint;
 
         foreach (string option in data.options)
         {
@@ -172,6 +184,11 @@ public class QuizUI : MonoBehaviour
         }
 
         continueButton.interactable = false;
+    }
+    
+    private void OnHintClicked()
+    {
+        hintPanel.SetActive(!hintPanel.activeInHierarchy);
     }
 
     private void OnContinueClicked()

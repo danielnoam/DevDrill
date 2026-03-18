@@ -13,6 +13,7 @@ public class QuestionData
     public string[] options;
     public int[] correct;
     public string explanation;
+    public string hint;
     
     public void ShuffleOptions()
     {
